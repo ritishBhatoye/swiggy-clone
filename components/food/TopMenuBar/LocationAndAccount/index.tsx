@@ -7,8 +7,8 @@ import { View, Text, TouchableOpacity } from "react-native";
 const LocationAndAccount = () => {
   return (
     <View className="flex flex-row items-center gap-4 justify-between w-full">
-      <View className="flex flex-col items-start">
-        <View className="flex flex-row items-center gap-3">
+      <View className="flex flex-col items-start gap-2">
+        <View className="flex flex-row items-center gap-2">
           <Ionicons name="location-outline" size={16} color={"primary-500"} />
 
           <Text className="text-black text-md font-semibold">Patara</Text>
