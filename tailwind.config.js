@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./app/**/*.{js,jsx,ts,tsx}"],
+  content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
     extend: {
@@ -74,6 +74,18 @@ module.exports = {
           mauve: "#B6A0A7",
           brown: "#6C4434",
           maroon: "#582630",
+        },
+        grey: {
+          50: "#F9FAFB", // Lightest grey for backgrounds
+          100: "#F3F4F6", // Light grey background, commonly for input fields
+          200: "#E5E7EB", // Used for borders or background of search fields
+          300: "#D1D5DB", // Light gray text or inactive button states
+          400: "#9CA3AF", // Placeholder text, muted text
+          500: "#6B7280", // Regular disabled text color
+          600: "#4B5563", // Button text or dark text on light backgrounds
+          700: "#374151", // Dark grey text or border for contrast
+          800: "#1F2937", // Dark background elements or borders
+          900: "#111827", // Deep grey, almost black, used for text or strong contrasts
         },
 
         white: "#FFFFFF",

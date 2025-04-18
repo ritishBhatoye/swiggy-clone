@@ -6,7 +6,7 @@ import { View, Text } from "react-native";
 
 const LocationAndAccount = () => {
   return (
-    <View className="flex flex-row items-center gap-4 justify-between">
+    <View className="flex flex-row items-center gap-4 justify-between w-full">
       <View className="flex flex-col items-start">
         <View className="flex flex-row">
           <Ionicons name="share" size={20} color={"primary-500"} />
