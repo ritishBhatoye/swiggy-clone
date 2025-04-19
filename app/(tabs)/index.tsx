@@ -1,4 +1,5 @@
-import Card from "@/components/elements/Cards/CarouselCard";
+import CarouselCard from "@/components/elements/Cards/CarouselCard";
+
 import FoodCarousel from "@/components/food/Carousel";
 import TopMenuBar from "@/components/food/TopMenuBar";
 import { CarouselData } from "@/constants/dummyData/CardCarouselData";
@@ -18,7 +19,7 @@ export default function HomeScreen() {
           <FoodCarousel
             cardData={CarouselData}
             card={(food: CarouselCardType) => (
-              <Card key={food.id} item={food} />
+              <CarouselCard key={food.id} item={food} />
             )}
           />
         </ScrollView>
