@@ -8,3 +8,8 @@ export interface CarouselCardType {
   deliveryTime: string;
   color: string;
 }
+
+export interface MenuCardDataType {
+  title: string;
+  image: string;
+}

@@ -1,12 +1,14 @@
 import React from "react";
 
-import { View, Image } from "react-native";
+import { View, Image, Text } from "react-native";
 
 const CardTile = () => {
   return (
     <View className="">
-      <Image />
-      <View className="flex flex-col items-start"></View>
+      <Image className="aspect-square" />
+      <View className="flex flex-col items-start">
+        <Text></Text>
+      </View>
     </View>
   );
 };
