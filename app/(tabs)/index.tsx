@@ -10,8 +10,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function HomeScreen() {
   return (
     <SafeAreaView className="bg-white">
-      <View className="w-11/12 mx-auto px-2">
-        <TopMenuBar />
+      <View className="w-full  ">
+        <View className="w-11/12 mx-auto px-2">
+          <TopMenuBar />
+        </View>
         <ScrollView>
           <FoodCarousel
             cardData={CarouselData}

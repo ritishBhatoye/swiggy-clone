@@ -1,10 +1,11 @@
 import React from "react";
-import { View, Text, Dimensions, Image, TouchableOpacity } from "react-native";
+
+import { View, Dimensions } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
-import { CarouselData } from "../../../constants/dummyData/CardCarouselData";
+
 import { CarouselCardType } from "@/types";
 
-const { width: screenWidth } = Dimensions.get("window");
+// const { width: screenWidth } = Dimensions.get("window");
 
 const FoodCarousel = ({
   card,
@@ -13,13 +14,16 @@ const FoodCarousel = ({
   card: (item: CarouselCardType) => JSX.Element;
   cardData: CarouselCardType[];
 }) => {
-  const width = screenWidth - 32;
+  //   const width = screenWidth - 32;
+  const screenWidth = Dimensions.get("window").width;
+  const carouselWidth = (11 / 12) * screenWidth;
   return (
-    <View className="px-4 py-5">
+    <View className="w-full py-5 ">
       <Carousel
         loop
-        width={width}
-        height={width / 2}
+        style={{ marginHorizontal: "auto" }}
+        width={carouselWidth}
+        height={200}
         autoPlay={true}
         data={cardData}
         scrollAnimationDuration={1000}
