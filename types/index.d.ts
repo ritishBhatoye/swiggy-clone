@@ -6,4 +6,5 @@ export interface CarouselCardType {
   itemImage: string;
   rating: number;
   deliveryTime: string;
+  color: string;
 }

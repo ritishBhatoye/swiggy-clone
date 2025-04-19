@@ -1,4 +1,6 @@
-export const CarouselData = [
+import { CarouselCardType } from "@/types";
+
+export const CarouselData: CarouselCardType[] = [
   {
     id: 1,
     shopName: "Pizza Hut",

@@ -24,7 +24,9 @@ const Card = ({ item }: { item: CarouselCardType }) => {
               {item.shopName}
             </Text>
 
-            <Text className="text- font-bold text-xs">{item.offer}</Text>
+            <Text className={`text-${item.color} font-bold text-md`}>
+              Get Up To {item.offer}% OFF
+            </Text>
 
             <Text className="text-sm text-gray-600" numberOfLines={2}>
               {item.itemName}
