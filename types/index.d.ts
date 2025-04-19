@@ -10,6 +10,7 @@ export interface CarouselCardType {
 }
 
 export interface MenuCardDataType {
+  id: number;
   title: string;
   image: string;
 }
