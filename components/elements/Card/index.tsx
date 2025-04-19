@@ -15,21 +15,6 @@ const Card = ({ item }: { item: CarouselCardType }) => {
     >
       <View className="flex-row h-full">
         {/* Left side - Image */}
-        <View className="w-1/2 relative">
-          <Image
-            source={{ uri: item.itemImage }}
-            className="w-full h-full"
-            resizeMode="cover"
-          />
-          {/* Offer Badge */}
-          <View className="absolute top-2 left-2">
-            <View className="bg-red-500 px-2 py-1 rounded">
-              <Text className="text-white font-bold text-xs">{item.offer}</Text>
-            </View>
-          </View>
-        </View>
-
-        {/* Right side - Content */}
         <View className="w-1/2 p-3 justify-between">
           <View className="space-y-1">
             <Text
@@ -38,6 +23,9 @@ const Card = ({ item }: { item: CarouselCardType }) => {
             >
               {item.shopName}
             </Text>
+
+            <Text className="text- font-bold text-xs">{item.offer}</Text>
+
             <Text className="text-sm text-gray-600" numberOfLines={2}>
               {item.itemName}
             </Text>
@@ -56,6 +44,17 @@ const Card = ({ item }: { item: CarouselCardType }) => {
             {/* Delivery Time */}
             <Text className="text-xs text-gray-500">{item.deliveryTime}</Text>
           </View>
+        </View>
+
+        {/* Right side - Content */}
+        <View className="w-1/2 relative">
+          <Image
+            source={{ uri: item.itemImage }}
+            className="w-full h-full"
+            resizeMode="cover"
+          />
+          {/* Offer Badge */}
+          <View className="absolute top-2 left-2"></View>
         </View>
       </View>
     </TouchableOpacity>

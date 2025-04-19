@@ -8,8 +8,10 @@ const { width: screenWidth } = Dimensions.get("window");
 
 const FoodCarousel = ({
   card,
+  cardData,
 }: {
   card: (item: CarouselCardType) => JSX.Element;
+  cardData: CarouselCardType[];
 }) => {
   const width = screenWidth - 32;
   return (
@@ -19,7 +21,7 @@ const FoodCarousel = ({
         width={width}
         height={width / 2}
         autoPlay={true}
-        data={CarouselData}
+        data={cardData}
         scrollAnimationDuration={1000}
         autoPlayInterval={4000}
         renderItem={({ item }) => card(item)}

@@ -2,6 +2,7 @@ export const CarouselData = [
   {
     id: 1,
     shopName: "Pizza Hut",
+    color: "#FF0000", // Red
     offer: "₹125 OFF",
     itemName: "Pepperoni Pizza",
     itemImage:
@@ -12,6 +13,7 @@ export const CarouselData = [
   {
     id: 2,
     shopName: "McDonald's",
+    color: "#FFC72C", // Golden
     offer: "₹75 OFF",
     itemName: "Big Mac Burger",
     itemImage:
@@ -22,6 +24,7 @@ export const CarouselData = [
   {
     id: 3,
     shopName: "Subway",
+    color: "#008C15", // Green
     offer: "₹100 OFF",
     itemName: "Italian BMT",
     itemImage:
@@ -32,6 +35,7 @@ export const CarouselData = [
   {
     id: 4,
     shopName: "Domino's Pizza",
+    color: "#006491", // Blue
     offer: "₹150 OFF",
     itemName: "Cheese Burst Pizza",
     itemImage:
@@ -42,6 +46,7 @@ export const CarouselData = [
   {
     id: 5,
     shopName: "KFC",
+    color: "#FF0000", // Red
     offer: "₹200 OFF",
     itemName: "Bucket Chicken",
     itemImage:
@@ -52,6 +57,7 @@ export const CarouselData = [
   {
     id: 6,
     shopName: "Burger King",
+    color: "#D62300", // Orange-Red
     offer: "₹100 OFF",
     itemName: "Whopper Burger",
     itemImage:
@@ -62,6 +68,7 @@ export const CarouselData = [
   {
     id: 7,
     shopName: "Starbucks",
+    color: "#00704A", // Dark Green
     offer: "₹50 OFF",
     itemName: "Frappuccino",
     itemImage:
@@ -72,6 +79,7 @@ export const CarouselData = [
   {
     id: 8,
     shopName: "Dunkin' Donuts",
+    color: "#FF6B1E", // Orange
     offer: "₹80 OFF",
     itemName: "Assorted Donuts",
     itemImage:
@@ -82,6 +90,7 @@ export const CarouselData = [
   {
     id: 9,
     shopName: "Taco Bell",
+    color: "#702082", // Purple
     offer: "₹120 OFF",
     itemName: "Mexican Burrito",
     itemImage:
@@ -92,6 +101,7 @@ export const CarouselData = [
   {
     id: 10,
     shopName: "Baskin Robbins",
+    color: "#FF69B4", // Pink
     offer: "₹90 OFF",
     itemName: "Ice Cream Sundae",
     itemImage:
@@ -102,6 +112,7 @@ export const CarouselData = [
   {
     id: 11,
     shopName: "Biryani House",
+    color: "#FFB347", // Light Orange
     offer: "₹175 OFF",
     itemName: "Chicken Biryani",
     itemImage:
@@ -112,6 +123,7 @@ export const CarouselData = [
   {
     id: 12,
     shopName: "Chinese Wok",
+    color: "#8B0000", // Dark Red
     offer: "₹140 OFF",
     itemName: "Schezwan Noodles",
     itemImage:
@@ -122,6 +134,7 @@ export const CarouselData = [
   {
     id: 13,
     shopName: "Sushi Junction",
+    color: "#4B0082", // Indigo
     offer: "₹200 OFF",
     itemName: "California Roll",
     itemImage:
@@ -132,6 +145,7 @@ export const CarouselData = [
   {
     id: 14,
     shopName: "Pasta Paradise",
+    color: "#228B22",
     offer: "₹160 OFF",
     itemName: "Alfredo Pasta",
     itemImage:
@@ -142,6 +156,7 @@ export const CarouselData = [
   {
     id: 15,
     shopName: "Thai Express",
+    color: "#FF4500",
     offer: "₹130 OFF",
     itemName: "Pad Thai",
     itemImage:
@@ -152,6 +167,7 @@ export const CarouselData = [
   {
     id: 16,
     shopName: "Sandwich Studio",
+    color: "#20B2AA",
     offer: "₹85 OFF",
     itemName: "Club Sandwich",
     itemImage:
@@ -162,6 +178,7 @@ export const CarouselData = [
   {
     id: 17,
     shopName: "Smoothie Bar",
+    color: "#9370DB",
     offer: "₹70 OFF",
     itemName: "Berry Blast",
     itemImage:
@@ -172,6 +189,7 @@ export const CarouselData = [
   {
     id: 18,
     shopName: "Waffle House",
+    color: "#CD853F",
     offer: "₹110 OFF",
     itemName: "Belgian Waffle",
     itemImage:
@@ -182,6 +200,7 @@ export const CarouselData = [
   {
     id: 19,
     shopName: "South Indian Kitchen",
+    color: "#556B2F",
     offer: "₹95 OFF",
     itemName: "Masala Dosa",
     itemImage:
@@ -192,6 +211,7 @@ export const CarouselData = [
   {
     id: 20,
     shopName: "Dessert Factory",
+    color: "#FF1493",
     offer: "₹120 OFF",
     itemName: "Chocolate Brownie",
     itemImage:
