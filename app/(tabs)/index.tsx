@@ -1,4 +1,4 @@
-import Card from "@/components/elements/Card";
+import Card from "@/components/elements/Cards/CarouselCard";
 import FoodCarousel from "@/components/food/Carousel";
 import TopMenuBar from "@/components/food/TopMenuBar";
 import { CarouselData } from "@/constants/dummyData/CardCarouselData";
