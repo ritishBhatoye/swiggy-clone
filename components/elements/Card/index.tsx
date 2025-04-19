@@ -7,28 +7,34 @@ import { Image, Text } from "react-native";
 const Card = ({ item }: { item: CarouselCardType }) => {
   return (
     <TouchableOpacity
-      className="flex-1 mx-1 rounded-xl overflow-hidden bg-white shadow-lg"
+      className="flex-1 mx-1 rounded-xl overflow-hidden bg-white  shadow-lg "
       activeOpacity={0.9}
       //   onPress={() => {
       //     console.log("Selected:", item.shopName);
       //   }}
     >
-      <View className="flex-row h-full">
+      <View className="flex-row h-full bg-gradient-to-br from-primary-300 via-primary-500 to-primary-700">
         {/* Left side - Image */}
         <View className="w-1/2 p-3 justify-between">
-          <View className="space-y-1">
+          <View className="space-y-1 flex flex-col items-start gap-2">
             <Text
-              className="text-base font-bold text-gray-800 leading-tight"
+              className="text-base font-bold text-gray-500 leading-tight"
               numberOfLines={1}
             >
               {item.shopName}
             </Text>
 
-            <Text className={`text-${item.color} font-bold text-md`}>
+            <Text
+              style={{ color: item.color }}
+              className={` font-bold text-md`}
+            >
               Get Up To {item.offer}% OFF
             </Text>
 
-            <Text className="text-sm text-gray-600" numberOfLines={2}>
+            <Text
+              className="text-sm text-gray-600 font-light"
+              numberOfLines={2}
+            >
               {item.itemName}
             </Text>
           </View>
