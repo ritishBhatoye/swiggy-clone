@@ -7,7 +7,7 @@ const MenuCard = ({ item }: { item: MenuCardDataType }) => {
   return (
     <View className="flex flex-col items-center gap-3">
       <Image
-        source={require(item.image)}
+        source={item.image}
         className="h-44 w-44 pt-1/3"
         resizeMode="cover"
       />
