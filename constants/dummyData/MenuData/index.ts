@@ -8,7 +8,7 @@ export const MenuData: MenuCardDataType[] = [
   },
   {
     id: 2,
-    image: require("/assets/images/home/menu/rashmalia.png"),
+    image: require("@/assets/images/home/menu/rashmalia.png"),
     title: "Rashmalai",
   },
   {
@@ -73,7 +73,7 @@ export const MenuData: MenuCardDataType[] = [
   },
   {
     id: 15,
-    image: require("@/assets/images/home/menu/paratha.png"),
+    image: require("@/assets/images/home/menu/prantha.png"),
     title: "Paratha",
   },
   {
