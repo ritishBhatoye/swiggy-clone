@@ -13,7 +13,7 @@ export const MenuData: MenuCardDataType[] = [
   },
   {
     id: 3,
-    image: require("@/assets/images/home/menu/ice-cream.png"),
+    image: require("@/assets/images/home/menu/ice-cream.webp"),
     title: "Ice Cream",
   },
   {
