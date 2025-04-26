@@ -3,7 +3,8 @@ import { CategoryCardDataType } from "../../../types";
 export const CategoryDummyData: CategoryCardDataType[] = [
   {
     id: 1,
-    image: require("@/assets/images/home/menu/burger.png"),
+    image:
+      "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=400&q=80",
     offer: "20% OFF",
     rating: "4.5",
     deliveryTime: "30 mins",
@@ -14,7 +15,8 @@ export const CategoryDummyData: CategoryCardDataType[] = [
   },
   {
     id: 2,
-    image: require("@/assets/images/home/menu/pizza.png"),
+    image:
+      "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80",
     offer: "15% OFF",
     rating: "4.2",
     deliveryTime: "25 mins",
@@ -25,7 +27,8 @@ export const CategoryDummyData: CategoryCardDataType[] = [
   },
   {
     id: 3,
-    image: require("@/assets/images/home/menu/salad.png"),
+    image:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
     offer: "10% OFF",
     rating: "4.8",
     deliveryTime: "40 mins",
@@ -36,7 +39,8 @@ export const CategoryDummyData: CategoryCardDataType[] = [
   },
   {
     id: 4,
-    image: require("@/assets/images/home/menu/dosa.png"),
+    image:
+      "https://images.unsplash.com/photo-1600628422019-6c1a9b7b8c5e?auto=format&fit=crop&w=400&q=80",
     offer: "25% OFF",
     rating: "4.6",
     deliveryTime: "20 mins",
@@ -47,7 +51,8 @@ export const CategoryDummyData: CategoryCardDataType[] = [
   },
   {
     id: 5,
-    image: require("@/assets/images/home/menu/ice-cream.webp"),
+    image:
+      "https://images.unsplash.com/photo-1505250469679-203ad9ced0cb?auto=format&fit=crop&w=400&q=80",
     offer: "30% OFF",
     rating: "4.7",
     deliveryTime: "15 mins",
@@ -58,7 +63,8 @@ export const CategoryDummyData: CategoryCardDataType[] = [
   },
   {
     id: 6,
-    image: require("@/assets/images/home/menu/biryani.png"),
+    image:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
     offer: "18% OFF",
     rating: "4.4",
     deliveryTime: "35 mins",
@@ -69,7 +75,8 @@ export const CategoryDummyData: CategoryCardDataType[] = [
   },
   {
     id: 7,
-    image: require("@/assets/images/home/menu/pasta.png"),
+    image:
+      "https://images.unsplash.com/photo-1523987355523-c7b5b0723c6a?auto=format&fit=crop&w=400&q=80",
     offer: "12% OFF",
     rating: "4.3",
     deliveryTime: "28 mins",
@@ -80,7 +87,8 @@ export const CategoryDummyData: CategoryCardDataType[] = [
   },
   {
     id: 8,
-    image: require("@/assets/images/home/menu/salad.png"),
+    image:
+      "https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=400&q=80",
     offer: "22% OFF",
     rating: "4.1",
     deliveryTime: "18 mins",
@@ -91,7 +99,8 @@ export const CategoryDummyData: CategoryCardDataType[] = [
   },
   {
     id: 9,
-    image: require("@/assets/images/home/menu/noodles.png"),
+    image:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
     offer: "17% OFF",
     rating: "4.0",
     deliveryTime: "32 mins",
@@ -102,7 +111,8 @@ export const CategoryDummyData: CategoryCardDataType[] = [
   },
   {
     id: 10,
-    image: require("@/assets/images/home/menu/pure-veg.png"),
+    image:
+      "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80",
     offer: "14% OFF",
     rating: "4.2",
     deliveryTime: "22 mins",
