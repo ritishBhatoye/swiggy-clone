@@ -2,12 +2,16 @@ import { CategoryCard } from "@/components/elements/Cards/CategoryCard";
 import { CategoryDummyData } from "@/constants/dummyData/CategoryData";
 import React from "react";
 
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import Filters from "../Filters";
 
 const CategorySection = () => {
   return (
-    <View className="flex flex-col items-start gap-5">
+    <View className="flex flex-col items-start gap-6 py-4">
+      <Text className="text-gray-400 font-bold text-sm w-11/12 mx-auto">
+        {" "}
+        Top 893 restaurants to explore
+      </Text>
       <Filters />
       <View className="w-11/12 mx-auto flex flex-col items-start gap-6">
         {CategoryDummyData.map((categoryItem) => (
