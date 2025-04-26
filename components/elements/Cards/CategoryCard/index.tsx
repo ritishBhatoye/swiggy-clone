@@ -23,13 +23,16 @@ export const CategoryCard = ({
         </View>
       </View>
 
-      <View className="flex flex-col items-start">
+      <View className="flex flex-col items-start gap-0.5">
         {/* FoodItem */}
         <Text className="text-base font-semibold">{category.item}</Text>
         <Text className="text-sm font-semibold">
           {category.rating} • {category.deliveryTime}{" "}
         </Text>
-        <Text className="text-sm font-medium"> {category.location}</Text>
+        <Text className="text-sm font-medium">
+          {" "}
+          {category.location} • {category.distance}
+        </Text>
       </View>
     </View>
   );

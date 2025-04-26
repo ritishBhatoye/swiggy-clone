@@ -10,6 +10,7 @@ export const CategoryDummyData: CategoryCardDataType[] = [
     item: "Burger",
     shop: "Burger Hub",
     location: "Model Town, Jalandhar",
+    distance: "2.3 km",
   },
   {
     id: 2,
@@ -20,6 +21,7 @@ export const CategoryDummyData: CategoryCardDataType[] = [
     item: "Pizza",
     shop: "Pizza Point",
     location: "Urban Estate, Jalandhar",
+    distance: "3.1 km",
   },
   {
     id: 3,
@@ -30,6 +32,7 @@ export const CategoryDummyData: CategoryCardDataType[] = [
     item: "Sushi",
     shop: "Sushi Express",
     location: "Lajpat Nagar, Jalandhar",
+    distance: "4.7 km",
   },
   {
     id: 4,
@@ -40,6 +43,7 @@ export const CategoryDummyData: CategoryCardDataType[] = [
     item: "Dosa",
     shop: "Dosa Plaza",
     location: "GTB Nagar, Jalandhar",
+    distance: "2.9 km",
   },
   {
     id: 5,
@@ -50,6 +54,7 @@ export const CategoryDummyData: CategoryCardDataType[] = [
     item: "Ice Cream",
     shop: "Cream Bell",
     location: "Shastri Market, Jalandhar",
+    distance: "1.8 km",
   },
   {
     id: 6,
@@ -60,6 +65,7 @@ export const CategoryDummyData: CategoryCardDataType[] = [
     item: "Biryani",
     shop: "Biryani Blues",
     location: "BMC Chowk, Jalandhar",
+    distance: "3.6 km",
   },
   {
     id: 7,
@@ -70,6 +76,7 @@ export const CategoryDummyData: CategoryCardDataType[] = [
     item: "Pasta",
     shop: "Pasta Street",
     location: "Sodal Road, Jalandhar",
+    distance: "4.2 km",
   },
   {
     id: 8,
@@ -80,6 +87,7 @@ export const CategoryDummyData: CategoryCardDataType[] = [
     item: "Salad",
     shop: "Green Bowl",
     location: "Rama Mandi, Jalandhar",
+    distance: "5.5 km",
   },
   {
     id: 9,
@@ -90,6 +98,7 @@ export const CategoryDummyData: CategoryCardDataType[] = [
     item: "Noodles",
     shop: "Wok Express",
     location: "Nakodar Road, Jalandhar",
+    distance: "3.8 km",
   },
   {
     id: 10,
@@ -100,5 +109,6 @@ export const CategoryDummyData: CategoryCardDataType[] = [
     item: "Sandwich",
     shop: "Subway",
     location: "Phagwara Gate, Jalandhar",
+    distance: "2.6 km",
   },
 ];
