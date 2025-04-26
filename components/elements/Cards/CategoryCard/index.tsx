@@ -1,15 +1,17 @@
 import { CategoryCardDataType } from "@/types";
-import React from "react";
+import React, { useState } from "react";
 
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export const CategoryCard = ({
   category,
 }: {
   category: CategoryCardDataType;
 }) => {
+  const [isFav, setIsFav] = useState(false);
   return (
     <View className="flex flex-row items-center w-full gap-5">
       <View className="aspect-square flex flex-col relative">
@@ -36,6 +38,15 @@ export const CategoryCard = ({
               {category.offer}
             </Text>
           </LinearGradient>
+        </View>
+        <View className="absolute right-0 top-0 p-2.5">
+          <TouchableOpacity onPress={() => setIsFav(!isFav)}>
+            <Ionicons
+              name={isFav ? "heart" : "heart-outline"}
+              size={26}
+              color={isFav ? "red" : "white"}
+            />
+          </TouchableOpacity>
         </View>
       </View>
 
