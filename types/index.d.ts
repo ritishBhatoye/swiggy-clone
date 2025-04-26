@@ -20,9 +20,9 @@ export interface FilterDataType {
   label: string;
 }
 
-export interface CategoryCard {
+export interface CategoryCardDataType {
   id: number;
-  image: string;
+  image: ImageSourcePropType;
   offer: string;
   rating: string;
   deliveryTime: string;
