@@ -10,15 +10,9 @@ export const SortByBottom = ({
 }) => {
   return (
     <ActionSheet ref={ref}>
-      <TouchableOpacity>
-        <Text>Price: Low to High</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Text>Price: High to Low</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Text>Rating</Text>
-      </TouchableOpacity>
+      <View className="grid grid-cols-2">
+        <View></View>
+      </View>
     </ActionSheet>
   );
 };
