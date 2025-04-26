@@ -20,14 +20,15 @@ export const CategoryCard = ({
           className="h-36 w-32 rounded-3xl "
           resizeMode="cover"
         />
-        <View className="absolute -bottom-3 w-full">
+        <View className="absolute -bottom-4 w-full">
           <LinearGradient
             colors={["rgba(0,0,0,0.7)", "rgba(0,0,0,0.4)"]}
             start={{ x: 0, y: 1 }}
             end={{ x: 1, y: 0 }}
             style={{
-              width: 100,
+              width: 110,
               borderBottomStartRadius: 24,
+              borderBottomEndRadius: 24,
               paddingHorizontal: 0,
               paddingVertical: 10,
               alignItems: "center",
