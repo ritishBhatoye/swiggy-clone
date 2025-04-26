@@ -1,6 +1,7 @@
 import CarouselCard from "@/components/elements/Cards/CarouselCard";
 
 import FoodCarousel from "@/components/food/Carousel";
+import Filters from "@/components/food/Filters";
 import MenuSection from "@/components/food/MenuSection";
 import TopMenuBar from "@/components/food/TopMenuBar";
 import { CarouselData } from "@/constants/dummyData/CardCarouselData";
@@ -26,6 +27,7 @@ export default function HomeScreen() {
           <View className="w-11/12 mx-auto px-2">
             <MenuSection />
           </View>
+          <Filters />
         </ScrollView>
       </View>
     </SafeAreaView>
