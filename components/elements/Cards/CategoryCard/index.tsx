@@ -10,13 +10,13 @@ export const CategoryCard = ({
 }) => {
   return (
     <View className="flex flex-row items-center w-full">
-      <View className="aspect-square relative">
+      <View className="aspect-square flex flex-col relative">
         <Image
           source={category.image}
-          className="h-32 w-32 p-5 pt-1/3 bg-black rounded-3xl "
+          className="h-32 w-32 p-5 pb-8 bg-black/40 rounded-3xl "
           resizeMode="contain"
         />
-        <View className="absolute right-0">
+        <View className="absolute bottom-1 left-1/4">
           <Text className="text-white text-base font-semibold">
             {category.offer}
           </Text>
