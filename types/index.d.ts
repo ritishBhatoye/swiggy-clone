@@ -14,3 +14,8 @@ export interface MenuCardDataType {
   title: string;
   image: ImageSourcePropType;
 }
+
+export interface FilterDataType {
+  id: number;
+  label: string;
+}
