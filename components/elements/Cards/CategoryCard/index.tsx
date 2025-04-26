@@ -9,11 +9,11 @@ export const CategoryCard = ({
   category: CategoryCardDataType;
 }) => {
   return (
-    <View className="flex flex-row items-center">
-      <View className="aspect-square rounded-lg relative">
+    <View className="flex flex-row items-center w-full">
+      <View className="aspect-square relative">
         <Image
           source={category.image}
-          className="h-24 w-24 pt-1/3"
+          className="h-32 w-32 p-5 pt-1/3 bg-black rounded-3xl "
           resizeMode="contain"
         />
         <View className="absolute right-0">

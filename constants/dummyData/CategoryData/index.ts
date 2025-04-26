@@ -3,7 +3,7 @@ import { CategoryCardDataType } from "../../../types";
 export const CategoryDummyData: CategoryCardDataType[] = [
   {
     id: 1,
-    image: "@assets/images/burger.jpg",
+    image: require("@/assets/images/home/menu/burger.png"),
     offer: "20% OFF",
     rating: "4.5",
     deliveryTime: "30 mins",
@@ -14,7 +14,7 @@ export const CategoryDummyData: CategoryCardDataType[] = [
   },
   {
     id: 2,
-    image: "@assets/images/pizza.jpg",
+    image: require("@/assets/images/home/menu/pizza.png"),
     offer: "15% OFF",
     rating: "4.2",
     deliveryTime: "25 mins",
@@ -25,7 +25,7 @@ export const CategoryDummyData: CategoryCardDataType[] = [
   },
   {
     id: 3,
-    image: "@assets/images/sushi.jpg",
+    image: require("@/assets/images/home/menu/salad.png"),
     offer: "10% OFF",
     rating: "4.8",
     deliveryTime: "40 mins",
@@ -36,7 +36,7 @@ export const CategoryDummyData: CategoryCardDataType[] = [
   },
   {
     id: 4,
-    image: "@assets/images/dosa.jpg",
+    image: require("@/assets/images/home/menu/dosa.png"),
     offer: "25% OFF",
     rating: "4.6",
     deliveryTime: "20 mins",
@@ -47,7 +47,7 @@ export const CategoryDummyData: CategoryCardDataType[] = [
   },
   {
     id: 5,
-    image: "@assets/images/icecream.jpg",
+    image: require("@/assets/images/home/menu/ice-cream.webp"),
     offer: "30% OFF",
     rating: "4.7",
     deliveryTime: "15 mins",
@@ -58,7 +58,7 @@ export const CategoryDummyData: CategoryCardDataType[] = [
   },
   {
     id: 6,
-    image: "@assets/images/biryani.jpg",
+    image: require("@/assets/images/home/menu/biryani.png"),
     offer: "18% OFF",
     rating: "4.4",
     deliveryTime: "35 mins",
@@ -69,7 +69,7 @@ export const CategoryDummyData: CategoryCardDataType[] = [
   },
   {
     id: 7,
-    image: "@assets/images/pasta.jpg",
+    image: require("@/assets/images/home/menu/pasta.png"),
     offer: "12% OFF",
     rating: "4.3",
     deliveryTime: "28 mins",
@@ -80,7 +80,7 @@ export const CategoryDummyData: CategoryCardDataType[] = [
   },
   {
     id: 8,
-    image: "@assets/images/salad.jpg",
+    image: require("@/assets/images/home/menu/salad.png"),
     offer: "22% OFF",
     rating: "4.1",
     deliveryTime: "18 mins",
@@ -91,7 +91,7 @@ export const CategoryDummyData: CategoryCardDataType[] = [
   },
   {
     id: 9,
-    image: "@assets/images/noodles.jpg",
+    image: require("@/assets/images/home/menu/noodles.png"),
     offer: "17% OFF",
     rating: "4.0",
     deliveryTime: "32 mins",
@@ -102,7 +102,7 @@ export const CategoryDummyData: CategoryCardDataType[] = [
   },
   {
     id: 10,
-    image: "@assets/images/sandwich.jpg",
+    image: require("@/assets/images/home/menu/pure-veg.png"),
     offer: "14% OFF",
     rating: "4.2",
     deliveryTime: "22 mins",
