@@ -26,7 +26,7 @@ const Filters = () => {
     <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
-      className="flex flex-row px-4"
+      className="flex flex-row px-4 ml-[4%]"
     >
       {FiltersOptionsData.map((item: FilterDataType) => (
         <TouchableOpacity
