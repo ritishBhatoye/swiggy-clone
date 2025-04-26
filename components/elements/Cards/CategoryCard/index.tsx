@@ -9,15 +9,15 @@ export const CategoryCard = ({
   category: CategoryCardDataType;
 }) => {
   return (
-    <View className="flex flex-row items-center w-full">
+    <View className="flex flex-row items-center w-full gap-5">
       <View className="aspect-square flex flex-col relative">
         <Image
           source={category.image}
-          className="h-32 w-32 p-5 pb-8 bg-black/40 rounded-3xl "
+          className="h-36 w-32 p-5 pb-8 bg-black/40 rounded-3xl "
           resizeMode="contain"
         />
         <View className="absolute bottom-1 left-1/4">
-          <Text className="text-white text-base font-semibold">
+          <Text className="text-white text-base font-extrabold">
             {category.offer}
           </Text>
         </View>
@@ -33,16 +33,18 @@ export const CategoryCard = ({
           {" "}
           {category.location} • {category.distance}
         </Text>
-        <View className="flex flex-row items-start">
+        <View className="flex flex-row items-center">
           <View className="flex flex-col items-start">
-            <Text className="text-primary-500 font-bold text-lg">
+            <Text className="text-primary-500 font-extrabold text-lg">
               EXTRA 20% OFF
             </Text>
             <Text className="text-primary-500 font-medium text-lg">
               FREE DELIVERY 20% OFF
             </Text>
           </View>
-          <Text className="text-primary-500">one</Text>
+          <Text className="text-primary-500 px-2 border font-extrabold border-primary-500 rounded-xl">
+            one
+          </Text>
         </View>
       </View>
     </View>
