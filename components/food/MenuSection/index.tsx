@@ -1,4 +1,5 @@
 import MenuCard from "@/components/elements/Cards/MenuCard";
+import { TitleWithBar } from "@/components/elements/TitleWithBar";
 import { MenuData } from "@/constants/dummyData/MenuData";
 import { MenuCardDataType } from "@/types";
 import React from "react";
@@ -13,7 +14,8 @@ const MenuSection = () => {
   const row2 = visibleItems.slice(10, 20);
 
   return (
-    <View className="w-full">
+    <View className="w-full flex flex-col items-start">
+      <TitleWithBar title={"RITISH, WHAT'S ON YOUR MIND"} />
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}

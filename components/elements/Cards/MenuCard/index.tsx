@@ -14,7 +14,7 @@ const MenuCard = ({ item }: { item: MenuCardDataType }) => {
             resizeMode="contain"
             style={{
               tintColor: undefined,
-              opacity: 1, // Adjust if needed (0.0 to 1.0)
+              opacity: 1,
             }}
           />
         </View>
