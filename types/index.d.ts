@@ -19,3 +19,14 @@ export interface FilterDataType {
   id: number;
   label: string;
 }
+
+export interface CategoryCard {
+  id: number;
+  image: string;
+  offer: string;
+  rating: string;
+  deliveryTime: string;
+  item: string;
+  shop: string;
+  location: string;
+}
