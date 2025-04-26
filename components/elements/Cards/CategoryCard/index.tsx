@@ -25,7 +25,7 @@ export const CategoryCard = ({
 
       <View className="flex flex-col items-start gap-0.5">
         {/* FoodItem */}
-        <Text className="text-base font-semibold">{category.item}</Text>
+        <Text className="text-lg font-semibold">{category.item}</Text>
         <Text className="text-sm font-semibold">
           {category.rating} • {category.deliveryTime}{" "}
         </Text>
@@ -33,6 +33,17 @@ export const CategoryCard = ({
           {" "}
           {category.location} • {category.distance}
         </Text>
+        <View className="flex flex-row items-start">
+          <View className="flex flex-col items-start">
+            <Text className="text-primary-500 font-bold text-lg">
+              EXTRA 20% OFF
+            </Text>
+            <Text className="text-primary-500 font-medium text-lg">
+              FREE DELIVERY 20% OFF
+            </Text>
+          </View>
+          <Text className="text-primary-500">one</Text>
+        </View>
       </View>
     </View>
   );
