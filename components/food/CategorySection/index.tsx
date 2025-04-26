@@ -9,7 +9,7 @@ const CategorySection = () => {
   return (
     <View className="flex flex-col items-start gap-5">
       <Filters />
-      <View className="w-11/12 mx-auto flex flex-col items-start gap-2">
+      <View className="w-11/12 mx-auto flex flex-col items-start gap-6">
         {CategoryDummyData.map((categoryItem) => (
           <CategoryCard key={categoryItem.id} category={categoryItem} />
         ))}

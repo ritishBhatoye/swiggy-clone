@@ -33,12 +33,12 @@ export const CategoryCard = ({
           {" "}
           {category.location} • {category.distance}
         </Text>
-        <View className="flex flex-row items-center">
+        <View className="flex flex-row items-center gap-4">
           <View className="flex flex-col items-start">
             <Text className="text-primary-500 font-extrabold text-lg">
               EXTRA 20% OFF
             </Text>
-            <Text className="text-primary-500 font-medium text-lg">
+            <Text className="text-primary-500 font-medium text-base">
               FREE DELIVERY 20% OFF
             </Text>
           </View>
