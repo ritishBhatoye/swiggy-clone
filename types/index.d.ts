@@ -29,4 +29,5 @@ export interface CategoryCardDataType {
   item: string;
   shop: string;
   location: string;
+  distance: string;
 }

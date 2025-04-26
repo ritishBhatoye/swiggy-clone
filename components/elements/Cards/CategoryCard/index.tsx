@@ -10,19 +10,26 @@ export const CategoryCard = ({
 }) => {
   return (
     <View className="flex flex-row items-center">
-      <View className="aspect-square rounded-lg">
+      <View className="aspect-square rounded-lg relative">
         <Image
           source={category.image}
           className="h-24 w-24 pt-1/3"
           resizeMode="contain"
         />
+        <View className="absolute right-0">
+          <Text className="text-white text-base font-semibold">
+            {category.offer}
+          </Text>
+        </View>
       </View>
 
       <View className="flex flex-col items-start">
-        <Text className="text-base font-semibold"></Text>
-        <Text className="text-medium font-semibold"></Text>
-
-        <View></View>
+        {/* FoodItem */}
+        <Text className="text-base font-semibold">{category.item}</Text>
+        <Text className="text-sm font-semibold">
+          {category.rating} • {category.deliveryTime}{" "}
+        </Text>
+        <Text className="text-sm font-medium"> {category.location}</Text>
       </View>
     </View>
   );
