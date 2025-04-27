@@ -12,7 +12,7 @@ const SignInScreen = () => {
         source={require("@/assets/images/auth/auth.jpg")}
         style={{ width: screenWidth, height: 250 }}
       />
-      <View className="w-full h-full bg-primary-500">
+      <View className="w-full h-full  bg-primary-500">
         <Text>Hi</Text>
       </View>
     </View>
