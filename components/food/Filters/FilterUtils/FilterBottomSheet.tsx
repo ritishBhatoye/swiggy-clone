@@ -33,7 +33,7 @@ const FilterBottomSheet = forwardRef((props, ref: any) => {
           ))}
         </View>
 
-        <View className=" grid grid-cols-1 items-start">
+        <View className="flex flex-col items-start">
           <Text className="font-medium text-gray-400 text-sm mb-2">
             SORT BY
           </Text>
