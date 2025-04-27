@@ -15,7 +15,7 @@ export interface MenuCardDataType {
   image: ImageSourcePropType;
 }
 
-export interface FilterDataType {
+export interface FilterOptionsDataType {
   id: number;
   label: string;
 }
@@ -30,4 +30,16 @@ export interface CategoryCardDataType {
   shop: string;
   location: string;
   distance: string;
+}
+
+export interface SortDataType {
+  id: number;
+  value: string;
+}
+
+export interface FilterOptionDataType {
+  id: number;
+  label: string;
+  value: string;
+  options: SortDataType[];
 }

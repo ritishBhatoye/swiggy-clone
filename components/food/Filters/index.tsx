@@ -4,8 +4,9 @@ import { router, useLocalSearchParams } from "expo-router";
 import { ScrollView } from "react-native";
 
 import { FiltersOptionsData } from "@/constants/dummyData/Filters";
-import { FilterDataType } from "@/types";
-import ActionSheet from "react-native-actions-sheet";
+import { FilterOptionsDataType } from "@/types";
+
+import FilterBottomSheet from "./FilterUtils/FilterBottomSheet";
 
 const Filters = () => {
   const params = useLocalSearchParams<{ filter?: string }>();
@@ -32,12 +33,13 @@ const Filters = () => {
 
   return (
     <>
+      <FilterBottomSheet ref={actionSheetRef} />
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
         className="flex flex-row px-4 ml-[2%]"
       >
-        {FiltersOptionsData.map((item: FilterDataType) => (
+        {FiltersOptionsData.map((item: FilterOptionsDataType) => (
           <TouchableOpacity
             onPress={() => handleCategoryPress(item.label, item.id)}
             className={`px-4 py-2 rounded-full  mr-4 ${
