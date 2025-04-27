@@ -24,15 +24,14 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
+    async function prepare() {
+      // You can load fonts, API, data here if needed
+      await new Promise((resolve) => setTimeout(resolve, 3000)); // 👈 Keep splash for 3 seconds
+      await SplashScreen.hideAsync(); // 👈 Now hide it
     }
-  }, [loaded]);
 
-  if (!loaded) {
-    return null;
-  }
-
+    prepare();
+  }, []);
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>

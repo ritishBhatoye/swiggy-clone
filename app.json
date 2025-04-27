@@ -17,8 +17,7 @@
       "supportsTablet": true,
       "splash": {
         "image": "./assets/images/splash-screen.png",
-        "resizeMode": "cover",
-        "backgroundColor": "#ffffff"
+        "resizeMode": "fill"
       }
     },
 
