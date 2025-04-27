@@ -7,7 +7,7 @@ import RadioGroup from "react-native-radio-buttons-group";
 
 const FilterBottomSheet = forwardRef((props, ref: any) => {
   const [selectedId, setSelectedId] = useState("lowToHigh");
-
+  const [filterOption, setFilterOption] = useState(FilterOption[0].id);
   const radioButtons = [
     { id: "lowToHigh", label: "Price: Low to High", value: "lowToHigh" },
     { id: "highToLow", label: "Price: High to Low", value: "highToLow" },
@@ -15,20 +15,31 @@ const FilterBottomSheet = forwardRef((props, ref: any) => {
     { id: "oldest", label: "Oldest First", value: "oldest" },
   ];
 
-  // const FilterOption = [
-  //   { id: 1, label: "Sort", value: "sort" },
-  //   { id: 2, label: "Veg/Non-Veg", value: "veg-or-non-veg" },
-  //   { id: 3, label: "Ratings", value: "ratings" },
-  //   { id: 4, label: "Cost For Two", value: "costTw" },
-  // ];
-
   return (
-    <ActionSheet ref={ref}>
+    <ActionSheet ref={ref} closable>
       <View className="flex flex-row w-full p-5 gap-5">
         <View className="flex flex-col items-start">
           {FilterOption.map((filter: FilterOptionDataType) => (
-            <View className="grid grid-cols-1 items-start" key={filter.id}>
-              <Text className="font-medium text-lg">{filter.label}</Text>
+            <View
+              className={`flex flex-row  items-center gap-5 `}
+              key={filter.id}
+            >
+              <Text
+                className={`py-5 ${
+                  filterOption == filter.id
+                    ? "border-r-8  border-r-primary-500 rounded-r-lg"
+                    : ""
+                }`}
+              ></Text>
+              <Text
+                className={`font-bold text-lg ${
+                  filterOption == filter.id
+                    ? "text-primary-500"
+                    : "text-gray-600"
+                }`}
+              >
+                {filter.label}
+              </Text>
             </View>
           ))}
         </View>
