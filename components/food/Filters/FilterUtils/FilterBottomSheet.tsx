@@ -1,3 +1,5 @@
+import { FilterOption } from "@/constants/dummyData/Filters";
+import { FilterOptionDataType } from "@/types";
 import React, { useState, forwardRef } from "react";
 import { View, Text } from "react-native";
 import ActionSheet from "react-native-actions-sheet"; // ✅ correct import
@@ -13,21 +15,25 @@ const FilterBottomSheet = forwardRef((props, ref: any) => {
     { id: "oldest", label: "Oldest First", value: "oldest" },
   ];
 
-  const FilterOption = [
-    { id: 1, label: "Sort", value: "sort" },
-    { id: 2, label: "Veg/Non-Veg", value: "veg-or-non-veg" },
-    { id: 3, label: "Ratings", value: "ratings" },
-    { id: 4, label: "Cost For Two", value: "costTw" },
-  ];
+  // const FilterOption = [
+  //   { id: 1, label: "Sort", value: "sort" },
+  //   { id: 2, label: "Veg/Non-Veg", value: "veg-or-non-veg" },
+  //   { id: 3, label: "Ratings", value: "ratings" },
+  //   { id: 4, label: "Cost For Two", value: "costTw" },
+  // ];
 
   return (
     <ActionSheet ref={ref}>
-      <View className="grid grid-cols-2">
+      <View className="flex flex-row w-full p-5 gap-5">
         <View className="flex flex-col items-start">
-          <></>
+          {FilterOption.map((filter: FilterOptionDataType) => (
+            <View className="grid grid-cols-1 items-start" key={filter.id}>
+              <Text className="font-medium text-lg">{filter.label}</Text>
+            </View>
+          ))}
         </View>
-        {/* <View /></View> */}
-        <View className="p-4">
+
+        <View className=" grid grid-cols-1 items-start">
           <Text className="font-medium text-gray-400 text-sm mb-2">
             SORT BY
           </Text>
@@ -36,7 +42,10 @@ const FilterBottomSheet = forwardRef((props, ref: any) => {
             radioButtons={radioButtons}
             onPress={setSelectedId}
             selectedId={selectedId}
-            containerStyle={{ flexDirection: "column" }}
+            containerStyle={{
+              flexDirection: "column",
+              alignItems: "flex-start",
+            }}
           />
         </View>
       </View>
