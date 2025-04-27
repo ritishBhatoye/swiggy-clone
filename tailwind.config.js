@@ -12,7 +12,7 @@ module.exports = {
           200: "#FFD1AA",
           300: "#FFB476",
           400: "#FF9440",
-          500: "#FC8019", //Base Swiggy Orange
+          500: "#EF4F27", //Base Swiggy Orange
           600: "#E66E11",
           700: "#BF590D",
           800: "#99450A",

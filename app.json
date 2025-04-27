@@ -4,7 +4,7 @@
     "slug": "swiggy-clone",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/splash-screen.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -17,7 +17,8 @@
       "supportsTablet": true,
       "splash": {
         "image": "./assets/images/splash-screen.png",
-        "resizeMode": "fill"
+        "resizeMode": "cover",
+        "backgroundColor": "#EF4F27"
       }
     },
 

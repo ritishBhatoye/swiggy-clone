@@ -10,7 +10,7 @@ const SearchInputField = () => {
         <Ionicons name="search" size={20} color={"#9ca3af"} className="" />
         <Text className="text-md text-gray-400">Search for 'Sweets'</Text>
       </View>
-      <Ionicons name="mic" size={20} color={"#FC8019"} />
+      <Ionicons name="mic" size={20} color={"#EF4F27"} />
     </View>
   );
 };
