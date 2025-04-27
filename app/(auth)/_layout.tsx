@@ -2,7 +2,7 @@ import React from "react";
 
 import { Stack } from "expo-router";
 
-export const AuthLayout = () => {
+const AuthLayout = () => {
   return (
     <Stack>
       <Stack.Screen name="forget-password" options={{ headerShown: false }} />
@@ -13,3 +13,5 @@ export const AuthLayout = () => {
     </Stack>
   );
 };
+
+export default AuthLayout;
