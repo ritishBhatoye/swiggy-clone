@@ -9,7 +9,7 @@ const FilterBottomSheet = forwardRef((props, ref: any) => {
   const [filterOption, setFilterOption] = useState(FilterOption[0].id);
   const selectedFilterOption = FilterOption.find((f) => f.id === filterOption);
   const [selectedId, setSelectedId] = useState(
-    selectedFilterOption?.options?.[0]?.id || ""
+    selectedFilterOption?.options?.[0]?.id || 1
   );
 
   return (
@@ -30,7 +30,7 @@ const FilterBottomSheet = forwardRef((props, ref: any) => {
                       ? "border-r-8  border-r-primary-500 rounded-r-lg"
                       : ""
                   }`}
-                ></Text>
+                />
                 <Text
                   className={`font-bold text-lg ${
                     filterOption == filter.id
@@ -46,8 +46,8 @@ const FilterBottomSheet = forwardRef((props, ref: any) => {
         </View>
 
         <View className="flex flex-col items-start">
-          <Text className="font-semibold text-gray-600 text-sm mb-2">
-            SORT BY
+          <Text className="font-semibold text-gray-600 text-lg mb-2">
+            {selectedFilterOption?.label}
           </Text>
           {selectedFilterOption?.options && (
             <RadioGroup

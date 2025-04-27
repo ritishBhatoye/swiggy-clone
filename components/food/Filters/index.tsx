@@ -16,7 +16,7 @@ const Filters = () => {
   const actionSheetRef = useRef(null);
 
   const handleCategoryPress = (category: string, id: number) => {
-    if (id === 2) {
+    if (id === 1) {
       actionSheetRef.current?.show();
       return;
     }
