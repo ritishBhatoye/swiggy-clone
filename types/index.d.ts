@@ -35,11 +35,13 @@ export interface CategoryCardDataType {
 export interface SortDataType {
   id: number;
   value: string;
+  label: string;
+  color: string;
 }
 
 export interface FilterOptionDataType {
   id: number;
   label: string;
   value: string;
-  options: SortDataType[];
+  options: RadioButtonProps[];
 }

@@ -31,23 +31,33 @@ export const FilterOption: FilterOptionDataType[] = [
     options: [
       {
         id: 1,
-        value: "Relevance(Default)",
+        value: "relevance(Default)",
+        label: "Relevance(Default)",
+        color: " #FC8019",
       },
       {
         id: 2,
         value: "Delivery Time",
+        label: "deliveryTime",
+        color: " #FC8019",
       },
       {
         id: 3,
         value: "Rating",
+        label: "rating",
+        color: " #FC8019",
       },
       {
         id: 4,
         value: "Cost: Low to High",
+        label: "costLowToHigh",
+        color: " #FC8019",
       },
       {
         id: 5,
         value: "Cost: High to Low",
+        label: "costHighToLow",
+        color: " #FC8019",
       },
     ],
   },
@@ -60,10 +70,14 @@ export const FilterOption: FilterOptionDataType[] = [
       {
         id: 1,
         value: "Non Veg",
+        label: "nonVeg",
+        color: " #FC8019",
       },
       {
         id: 2,
         value: "Pure Veg",
+        label: "pureVeg",
+        color: " #FC8019",
       },
     ],
   },
@@ -75,14 +89,21 @@ export const FilterOption: FilterOptionDataType[] = [
       {
         id: 1,
         value: "Ratings 3.5+",
+        label: "rating3.5+",
+
+        color: " #FC8019",
       },
       {
         id: 2,
         value: "Ratings 4.0+",
+        label: "rating4.0+",
+        color: " #FC8019",
       },
       {
         id: 3,
         value: "Rating 4.5+",
+        label: "rating4.5+",
+        color: " #FC8019",
       },
     ],
   },
@@ -94,14 +115,20 @@ export const FilterOption: FilterOptionDataType[] = [
       {
         id: 1,
         value: "Less than Rs. 300",
+        label: "lessThanRs.300",
+        color: " #FC8019",
       },
       {
         id: 2,
         value: "Rs.300 - Rs.600",
+        label: "rs.300-rs.600",
+        color: " #FC8019",
       },
       {
         id: 3,
         value: "Greater than Rs. 600",
+        label: "greaterThanRs.600",
+        color: " #FC8019",
       },
     ],
   },
