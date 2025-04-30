@@ -19,11 +19,14 @@ const SignInScreen = () => {
       />
       <View className="w-full h-full  bg-primary-500">
         <View className="rounded-t-[30px] p-8 bg-white h-full">
-          <View className="flex flex-col items-center ">
-            <Text className="text-2xl text-black font-medium">ACCOUNT</Text>
+          <View className="flex flex-col items-center w-11/12 mx-auto">
+            <Text className="text-2xl text-black font-medium text-start">
+              ACCOUNT
+            </Text>
             <Text className="text-sm text-gray-400 font-medium">
               Login/Create Account to manage order
             </Text>
+
             <Button
               title={"LOGIN"}
               textClassName="px-12 "
