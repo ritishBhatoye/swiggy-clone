@@ -28,7 +28,6 @@ const InputWithLabel = ({
         {label}
       </Text>
 
-      {/* Input Container with Continuous Border */}
       <View className="border-2 border-swiggy-primary rounded-lg p-2 bg-swiggy-accent-light">
         <TextInput
           className="text-swiggy-text text-base w-full"
