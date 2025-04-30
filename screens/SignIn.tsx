@@ -39,7 +39,11 @@ const SignInScreen = () => {
                 Terms & Conditions & Privacy
               </Text>
             </Text>
-            <ListTile title={""} leading={""} />
+            <ListTile
+              className="border-b"
+              title={"Send Feedback"}
+              leading={"mail-outline"}
+            />
           </View>
         </View>
       </View>
