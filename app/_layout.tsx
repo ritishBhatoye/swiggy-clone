@@ -13,9 +13,13 @@ import "react-native-reanimated";
 import "../global.css";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { LogBox } from "react-native";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
+LogBox.ignoreLogs([
+  "Support for defaultProps will be removed from function components",
+]);
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
