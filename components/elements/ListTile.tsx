@@ -7,7 +7,7 @@ import { IconProps } from "@expo/vector-icons/build/createIconSet";
 interface ListTileProps {
   title: string;
   subtitle?: string;
-  leading?: any; // Icon name for leading
+  leading: any; // Icon name for leading
   trailing?: any; // Icon name for trailing
   onPress?: () => void;
   dense?: boolean;

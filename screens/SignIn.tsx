@@ -5,6 +5,7 @@ import { View, Dimensions, Text } from "react-native";
 import { Image } from "expo-image";
 import InputWithLabel from "@/components/atoms/InputWithLabel";
 import Button from "@/components/atoms/Button";
+import { ListTile } from "@/components/elements/ListTile";
 
 const { width: screenWidth } = Dimensions.get("window");
 
@@ -38,13 +39,8 @@ const SignInScreen = () => {
                 Terms & Conditions & Privacy
               </Text>
             </Text>
+            <ListTile title={""} leading={""} />
           </View>
-          {/* <InputWithLabel
-            label="Mobile "
-            value={mobile}
-            onChangeText={setMobile}
-            placeholder=""
-          /> */}
         </View>
       </View>
     </View>
