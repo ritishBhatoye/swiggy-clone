@@ -20,7 +20,7 @@ const SignInScreen = () => {
       />
       <View className="w-full h-full  bg-primary-500">
         <View className="rounded-t-[30px] py-8 bg-white h-full">
-          <View className="flex flex-col items-center w-11/12 mx-auto gap-1">
+          <View className="flex flex-col items-center w-11/12 mx-auto gap-4">
             <Text className="text-2xl text-black font-semibold text-start w-full">
               ACCOUNT
             </Text>
@@ -39,14 +39,15 @@ const SignInScreen = () => {
                 Terms & Conditions & Privacy
               </Text>
             </Text>
+            <View className="my-5 shadow-none border-b border-black w-full" />
             <ListTile
-              className="border-b border-dashed border-gray-500"
+              className="border rounded-none border-dashed border-gray-500"
               title={"Send Feedback"}
               leading={"mail-outline"}
               color=" #6b7280"
             />
             <ListTile
-              className="border-b border-dashed border-gray-500"
+              className="border my-3 rounded-none  border-dashed border-gray-500"
               title={"Send Feedback"}
               leading={"mail-outline"}
               color=" #6b7280"
