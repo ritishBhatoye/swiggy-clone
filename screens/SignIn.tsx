@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { View, Dimensions, Text } from "react-native";
 import { Image } from "expo-image";
-import InputWithLabel from "@/components/atoms/InputWithLabel";
+
 import Button from "@/components/atoms/Button";
 import { ListTile } from "@/components/elements/ListTile";
 
