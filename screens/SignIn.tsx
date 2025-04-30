@@ -14,7 +14,7 @@ const SignInScreen = () => {
   return (
     <View className="flex flex-col items-start bg-primary-500 h-full">
       <Image
-        resizeMode="cover"
+        contentFit="cover"
         source={require("@/assets/images/auth/auth.jpg")}
         style={{ width: screenWidth, height: 250 }}
       />
