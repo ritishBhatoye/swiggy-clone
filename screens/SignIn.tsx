@@ -24,7 +24,11 @@ const SignInScreen = () => {
             <Text className="text-sm text-gray-400 font-medium">
               Login/Create Account to manage order
             </Text>
-            <Button title={"LOGIN"} />
+            <Button
+              title={"LOGIN"}
+              textClassName="px-12 "
+              className="rounded-none my-5"
+            />
           </View>
           {/* <InputWithLabel
             label="Mobile "
