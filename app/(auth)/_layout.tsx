@@ -14,9 +14,11 @@ const AuthLayout = () => {
         style={{ width: "100%", height: 250 }}
       />
 
-      {/* Auth content section (where screens will be rendered) */}
       <View className="w-full h-full bg-white rounded-t-[30px] py-8">
-        <Stack screenOptions={{ headerShown: false }} />
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="sign-in" />
+          <Stack.Screen name="auth-landing" />
+        </Stack>
       </View>
     </View>
   );
