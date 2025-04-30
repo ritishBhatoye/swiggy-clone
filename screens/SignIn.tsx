@@ -24,7 +24,7 @@ const SignInScreen = () => {
             <Text className="text-sm text-gray-400 font-medium">
               Login/Create Account to manage order
             </Text>
-            <Button></Button>
+            <Button title={"LOGIN"} />
           </View>
           {/* <InputWithLabel
             label="Mobile "

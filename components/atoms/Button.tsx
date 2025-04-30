@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
   const getButtonStyle = (): string => {
     switch (variant) {
       case "primary":
-        return "bg-primary-400";
+        return "bg-primary-500";
       case "secondary":
         return "bg-secondary-golden-500";
       case "tertiary":
