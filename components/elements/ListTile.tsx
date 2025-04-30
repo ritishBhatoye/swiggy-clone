@@ -14,6 +14,7 @@ interface ListTileProps {
   imageSrc?: any;
   titleClassName?: string;
   className?: string;
+  color?: string;
 }
 
 export const ListTile = ({
@@ -26,6 +27,7 @@ export const ListTile = ({
   imageSrc,
   titleClassName = "text-base font-medium text-gray-900",
   className = "",
+  color,
 }: ListTileProps) => {
   const containerClass = twMerge(
     `flex-row items-center rounded-2xl px-4 ${
@@ -38,7 +40,7 @@ export const ListTile = ({
       {/* Leading element (icon name) */}
       {leading && (
         <View className="mr-4">
-          <Ionicons name={leading} size={20} color="black" />
+          <Ionicons name={leading} size={20} color={color} />
         </View>
       )}
 
@@ -56,7 +58,7 @@ export const ListTile = ({
       {/* Trailing element (icon name) */}
       {trailing && (
         <View>
-          <Ionicons name={trailing} size={20} color="black" />
+          <Ionicons name={trailing} size={20} color={color} />
         </View>
       )}
     </Pressable>
