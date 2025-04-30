@@ -40,9 +40,16 @@ const SignInScreen = () => {
               </Text>
             </Text>
             <ListTile
-              className="border-b border-dashed border-gray-400"
+              className="border-b border-dashed border-gray-500"
               title={"Send Feedback"}
               leading={"mail-outline"}
+              color=" #6b7280"
+            />
+            <ListTile
+              className="border-b border-dashed border-gray-500"
+              title={"Send Feedback"}
+              leading={"mail-outline"}
+              color=" #6b7280"
             />
           </View>
         </View>
