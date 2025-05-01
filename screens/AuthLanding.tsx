@@ -5,8 +5,10 @@ import { View, Dimensions, Text } from "react-native";
 
 import Button from "@/components/atoms/Button";
 import { ListTile } from "@/components/elements/ListTile";
+import { Router, useRouter } from "expo-router";
 
 const AuthLandingScreen = () => {
+  const router: Router = useRouter();
   return (
     <View className="bg-white h-full w-full">
       <View className="flex flex-col items-center w-11/12 mx-auto gap-4">
@@ -18,6 +20,9 @@ const AuthLandingScreen = () => {
         </Text>
 
         <Button
+          onPress={() => {
+            router.push("/(auth)/sign-in");
+          }}
           title={"LOGIN"}
           textClassName="px-12 "
           className="rounded-sm my-2 py-4 mt-3 w-full"

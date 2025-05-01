@@ -1,27 +1,34 @@
-// app/(auth)/_layout.tsx
-import React from "react";
-import { View } from "react-native";
 import { Stack } from "expo-router";
 import { Image } from "expo-image";
+import { View } from "react-native";
+import React from "react";
 
-const AuthLayout = () => {
+export default function AuthLayout() {
   return (
-    <View className="flex flex-col bg-primary-500 h-full">
-      {/* Background Image or Top Section */}
-      <Image
-        contentFit="cover"
-        source={require("@/assets/images/auth/auth.jpg")}
-        style={{ width: "100%", height: 250 }}
-      />
-
-      <View className="w-full h-full bg-white rounded-t-[30px] py-8">
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="sign-in" />
-          <Stack.Screen name="auth-landing" />
-        </Stack>
+    <>
+      <View className="absolute top-0 left-0 w-full h-[250px] bg-primary-500 z-0">
+        <Image
+          contentFit="cover"
+          source={require("@/assets/images/auth/auth.jpg")}
+          style={{ width: "100%", height: 250 }}
+        />
       </View>
-    </View>
-  );
-};
 
-export default AuthLayout;
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: {
+            backgroundColor: "#fff",
+            borderTopLeftRadius: 30,
+            borderTopRightRadius: 30,
+            paddingTop: 8,
+            marginTop: 250,
+          },
+        }}
+      >
+        <Stack.Screen name="auth-landing" />
+        <Stack.Screen name="sign-in" />
+      </Stack>
+    </>
+  );
+}

@@ -1,9 +1,10 @@
+import AuthLandingScreen from "@/screens/AuthLanding";
 import React from "react";
 
 import { View } from "react-native";
 
-const AuthLandingPage = () => {
-  return <View>AuthLandingPage</View>;
+const AuthLanding = () => {
+  return <AuthLandingScreen />;
 };
 
-export default AuthLandingPage;
+export default AuthLanding;
