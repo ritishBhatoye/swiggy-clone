@@ -25,7 +25,18 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "config": {
+        "firebase": {
+          "apiKey": "AIzaSyDK8C0w0OHSQzZ2FAnpo_iMlK0ovpJ69J8",
+          "authDomain": "swiggy-clone-c857e.firebaseapp.com",
+          "projectId": "swiggy-clone-c857e",
+          "storageBucket": "swiggy-clone-c857e.firebasestorage.app",
+          "messagingSenderId": "284357645337",
+          "appId": "1:284357645337:web:04e21c757c70c8d9778688",
+          "measurementId": "G-NDENCJCTDR"
+        }
+      }
     },
     "plugins": [
       "expo-router",
