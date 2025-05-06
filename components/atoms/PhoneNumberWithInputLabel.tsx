@@ -19,14 +19,14 @@ const PhoneNumberInputWithLabel = ({
   return (
     <View className="mb-4">
       <Text
-        className={`text-primary-500 font-semibold mb-1 ${
-          isDarkMode ? "text-white" : "text-primary-500"
+        className={`text-gray-500 font-semibold mb-5 ${
+          isDarkMode ? "text-white" : "text-gray-500"
         }`}
       >
         {label}
       </Text>
 
-      <View className="border-2 border-swiggy-primary rounded-lg p-2 bg-swiggy-accent-light">
+      <View className="border  border-gray-400 rounded-none  bg-swiggy-accent-light">
         <PhoneInput
           ref={phoneInputRef}
           defaultValue={phoneNumber}
@@ -34,6 +34,9 @@ const PhoneNumberInputWithLabel = ({
           layout="first"
           onChangeFormattedText={setPhoneNumber}
           containerStyle={{
+            alignItems: "center",
+            display: "flex",
+            flexDirection: "row",
             backgroundColor: "transparent",
             borderColor: "transparent",
             width: "100%",
@@ -44,7 +47,7 @@ const PhoneNumberInputWithLabel = ({
           }}
           textInputStyle={{
             color: isDarkMode ? "#fff" : "#000",
-            height: 40,
+            // height: 0,
           }}
           codeTextStyle={{
             color: isDarkMode ? "#fff" : "#000",
