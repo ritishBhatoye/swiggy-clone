@@ -21,7 +21,6 @@
         "backgroundColor": "#EF4F27"
       }
     },
-
     "web": {
       "bundler": "metro",
       "output": "static",
@@ -47,7 +46,8 @@
           "imageWidth": 200,
           "resizeMode": "fill"
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true
