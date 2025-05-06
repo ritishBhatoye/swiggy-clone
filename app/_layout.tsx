@@ -14,7 +14,7 @@ import "../global.css";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { LogBox } from "react-native";
-import { ClerkProvider } from "@clerk/clerk-expo";
+import { ClerkProviderWrapper } from "@/components/elements/ClerkProviderWrapper";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -38,7 +38,7 @@ export default function RootLayout() {
     prepare();
   }, []);
   return (
-    <ClerkProvider>
+    <ClerkProviderWrapper>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <Stack>
           <Stack.Screen name="(auth)" options={{ headerShown: false }} />
@@ -48,6 +48,6 @@ export default function RootLayout() {
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>
-    </ClerkProvider>
+    </ClerkProviderWrapper>
   );
 }
