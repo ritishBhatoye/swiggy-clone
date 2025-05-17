@@ -3,6 +3,7 @@ import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
 import { Link, useRouter } from "expo-router";
 import Button from "@/components/atoms/Button";
+import InputWithLabel from "@/components/atoms/InputWithLabel";
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -84,17 +85,23 @@ export default function SignUpScreen() {
     <View>
       <>
         <Text className="text-">Sign up</Text>
-        <TextInput
+        <InputWithLabel
+          size="sm"
+          variant="outline"
           autoCapitalize="none"
           value={emailAddress}
           placeholder="Enter email"
           onChangeText={(email) => setEmailAddress(email)}
+          label={""}
         />
-        <TextInput
+        <InputWithLabel
+          size="sm"
+          variant="outline"
           value={password}
           placeholder="Enter password"
           secureTextEntry={true}
           onChangeText={(password) => setPassword(password)}
+          label={""}
         />
         <Button title={"Continue"} />
         <TouchableOpacity onPress={onSignUpPress}>

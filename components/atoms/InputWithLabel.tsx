@@ -1,41 +1,78 @@
-// app/components/InputWithLabel.js
 import React from "react";
-import { View, Text, TextInput, ColorSchemeName } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TextInputProps,
+  ColorSchemeName,
+} from "react-native";
 import { useColorScheme } from "react-native";
+import clsx from "clsx";
 
-const InputWithLabel = ({
+type InputSize = "sm" | "md" | "lg";
+type InputWidth = "full" | "half";
+type InputVariant = "box" | "outline";
+
+interface InputWithLabelProps extends TextInputProps {
+  label: string;
+  size?: InputSize;
+  width?: InputWidth;
+  variant?: InputVariant;
+}
+
+const InputWithLabel: React.FC<InputWithLabelProps> = ({
   label,
   value,
   onChangeText,
   placeholder,
-}: {
-  label: string;
-  value: string;
-  onChangeText: (text: string) => void;
-  placeholder: string;
+  secureTextEntry = false,
+  size = "md",
+  width = "full",
+  variant = "box",
+  ...rest
 }) => {
   const colorScheme: ColorSchemeName = useColorScheme();
   const isDarkMode: boolean = colorScheme === "dark";
 
+  const sizeStyles = {
+    sm: "text-sm p-2",
+    md: "text-base p-3",
+    lg: "text-lg p-4",
+  };
+
+  const widthStyles = {
+    full: "w-full",
+    half: "w-1/2",
+  };
+
+  const variantStyles = {
+    box: "bg-swiggy-accent-light border-2 border-swiggy-primary",
+    outline: "bg-transparent border-b border-gray-400",
+  };
+
   return (
-    <View className="mb-4">
+    <View className={clsx("mb-4", widthStyles[width])}>
       {/* Label */}
       <Text
-        className={`text-primary-500 font-semibold mb-1 ${
+        className={clsx(
+          "font-semibold mb-1",
           isDarkMode ? "text-white" : "text-primary-500"
-        }`}
+        )}
       >
         {label}
       </Text>
 
-      <View className="border-2 border-swiggy-primary rounded-lg p-2 bg-swiggy-accent-light">
+      <View
+        className={clsx("rounded-lg", variantStyles[variant], sizeStyles[size])}
+      >
         <TextInput
-          className="text-swiggy-text text-base w-full"
+          className={clsx("text-swiggy-text w-full", sizeStyles[size])}
           value={value}
           onChangeText={onChangeText}
           placeholder={placeholder}
+          secureTextEntry={secureTextEntry}
           placeholderTextColor={isDarkMode ? "#CCCCCC" : "#333333"}
-          style={{ height: 40 }} // Ensure consistent height
+          {...rest}
         />
       </View>
     </View>
