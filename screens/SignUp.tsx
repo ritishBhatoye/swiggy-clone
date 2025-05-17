@@ -69,7 +69,7 @@ export default function SignUpScreen() {
     return (
       <>
         <Text>Verify your email</Text>
-        <TextInput
+        <InputWithLabel
           value={code}
           placeholder="Enter your verification code"
           onChangeText={(code) => setCode(code)}
