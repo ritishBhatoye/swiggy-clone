@@ -84,13 +84,13 @@ export default function SignUpScreen() {
   return (
     <View>
       <>
-        <Text className="text-">Sign up</Text>
+        <Text className="text-2xl text-center font-semibold">Sign up</Text>
         <InputWithLabel
           size="sm"
           variant="outline"
           autoCapitalize="none"
           value={emailAddress}
-          placeholder="Enter email"
+          placeholder="@email.com"
           onChangeText={(email) => setEmailAddress(email)}
           label={""}
         />
@@ -98,7 +98,7 @@ export default function SignUpScreen() {
           size="sm"
           variant="outline"
           value={password}
-          placeholder="Enter password"
+          placeholder="password"
           secureTextEntry={true}
           onChangeText={(password) => setPassword(password)}
           label={""}
