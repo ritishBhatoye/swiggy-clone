@@ -92,7 +92,12 @@ export default function ClerkOTPLogin() {
               />
             )}
           />
-          <Button className="mt-4" title="Confirm OTP" onPress={confirmCode} />
+          <Button
+            size="sm"
+            className="mt-4"
+            title="Confirm OTP"
+            onPress={confirmCode}
+          />
         </View>
       )}
     </View>
