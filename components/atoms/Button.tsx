@@ -31,11 +31,11 @@ const Button: React.FC<ButtonProps> = ({
       case "primary":
         return "bg-primary-500";
       case "secondary":
-        return "bg-secondary-golden-500";
+        return "bg-secondary-golden-500 ";
       case "tertiary":
         return "bg-tertiary-yellow-500";
       case "isWhite":
-        return "bg-white";
+        return "bg-white border-primary-500 border";
       default:
         return "bg-primary-400";
     }

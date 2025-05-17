@@ -68,7 +68,7 @@ export default function SignUpScreen() {
   if (pendingVerification) {
     return (
       <>
-        <Text>Verify your email</Text>
+        <Text className="text-center">Verify your email</Text>
         <InputWithLabel
           value={code}
           placeholder="Enter your verification code"
@@ -110,7 +110,7 @@ export default function SignUpScreen() {
         <View style={{ display: "flex", flexDirection: "row", gap: 3 }}>
           <Text>Already have an account?</Text>
           <Link href="/sign-in">
-            <Button title={"Sign in"}></Button>
+            <Button size="sm" variant="isWhite" title={"Sign in"}></Button>
           </Link>
         </View>
       </>
