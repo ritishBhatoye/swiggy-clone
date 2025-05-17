@@ -2,6 +2,7 @@ import * as React from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
 import { Link, useRouter } from "expo-router";
+import Button from "@/components/atoms/Button";
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -82,7 +83,7 @@ export default function SignUpScreen() {
   return (
     <View>
       <>
-        <Text>Sign up</Text>
+        <Text className="text-">Sign up</Text>
         <TextInput
           autoCapitalize="none"
           value={emailAddress}
@@ -95,13 +96,14 @@ export default function SignUpScreen() {
           secureTextEntry={true}
           onChangeText={(password) => setPassword(password)}
         />
+        <Button title={"Continue"} />
         <TouchableOpacity onPress={onSignUpPress}>
           <Text>Continue</Text>
         </TouchableOpacity>
         <View style={{ display: "flex", flexDirection: "row", gap: 3 }}>
           <Text>Already have an account?</Text>
           <Link href="/sign-in">
-            <Text>Sign in</Text>
+            <Button title={"Sign in"}></Button>
           </Link>
         </View>
       </>
