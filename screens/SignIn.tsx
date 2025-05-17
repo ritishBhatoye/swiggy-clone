@@ -1,27 +1,22 @@
-import { View, Text, TextInput, Alert } from "react-native";
-import React, { useRef, useState } from "react";
-import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
-import { PhoneAuthProvider, signInWithCredential } from "firebase/auth";
-import { auth, firebaseConfig } from "@/lib/firebaseConfig";
-
+import { useSignIn } from "@clerk/clerk-expo";
+import { View, Text, Alert } from "react-native";
+import React, { useState } from "react";
+import PhoneNumberInputWithLabel from "@/components/atoms/PhoneNumberWithInputLabel";
+import Button from "@/components/atoms/Button";
 import {
   CodeField,
   Cursor,
   useBlurOnFulfill,
   useClearByFocusCell,
 } from "react-native-confirmation-code-field";
-import { Router, useRouter } from "expo-router";
-import PhoneNumberInputWithLabel from "@/components/atoms/PhoneNumberWithInputLabel";
-import Button from "@/components/atoms/Button";
 
 const CELL_COUNT = 6;
 
-export default function SignInScreen() {
-  const router: Router = useRouter();
-  const recaptchaVerifier = useRef(null);
+export default function ClerkOTPLogin() {
+  const { signIn, setActive } = useSignIn();
   const [phone, setPhone] = useState("");
   const [code, setCode] = useState("");
-  const [verificationId, setVerificationId] = useState<string | null>(null);
+  const [verificationId, setVerificationId] = useState("");
 
   const ref = useBlurOnFulfill({ value: code, cellCount: CELL_COUNT });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -31,42 +26,42 @@ export default function SignInScreen() {
 
   const sendOtp = async () => {
     try {
-      const provider = new PhoneAuthProvider(auth);
-      const id = await provider.verifyPhoneNumber(
-        phone,
-        recaptchaVerifier.current!
-      );
-      setVerificationId(id);
-      Alert.alert("OTP Sent", "Check your phone.");
-    } catch (error: any) {
-      Alert.alert("Error sending OTP", error.message);
+      const attempt = await signIn?.create({
+        identifier: phone,
+        strategy: "phone_code",
+      });
+      setVerificationId(attempt?.verifications[0].id); // Save verification ID if needed
+      Alert.alert("OTP sent");
+    } catch (err: any) {
+      Alert.alert("Error", err?.errors?.[0]?.message || err.message);
     }
   };
 
   const confirmCode = async () => {
     try {
-      const credential = PhoneAuthProvider.credential(verificationId!, code);
-      await signInWithCredential(auth, credential);
-      Alert.alert("Success", "Phone number verified!");
+      const result = await signIn?.attemptFirstFactor({
+        strategy: "phone_code",
+        code,
+      });
+
+      if (result?.status === "complete") {
+        await setActive({ session: result?.createdSessionId });
+        Alert.alert("Success", "Signed in!");
+      } else {
+        Alert.alert("More steps needed");
+      }
     } catch (err: any) {
-      Alert.alert("Invalid OTP", err.message);
+      Alert.alert("Error", err?.errors?.[0]?.message || err.message);
     }
   };
 
   return (
-    <View className=" p-6 bg-white justify-center">
-      <FirebaseRecaptchaVerifierModal
-        ref={recaptchaVerifier}
-        firebaseConfig={firebaseConfig}
-        attemptInvisibleVerification={true}
-      />
-
+    <View className="p-6 bg-white">
       <PhoneNumberInputWithLabel
         label="Phone Number"
         phoneNumber={phone}
         setPhoneNumber={setPhone}
       />
-
       <Button className="mt-5" title="Send OTP" onPress={sendOtp} />
 
       {verificationId && (
@@ -89,8 +84,7 @@ export default function SignInScreen() {
               <TextInput
                 key={index}
                 value={symbol}
-                editable={false}
-                selectTextOnFocus={false}
+                editable={true}
                 className={`w-12 h-14 text-xl text-center border rounded-lg mx-1 ${
                   isFocused ? "border-black" : "border-gray-300"
                 }`}
@@ -98,10 +92,7 @@ export default function SignInScreen() {
               />
             )}
           />
-
-          <View className="mt-4">
-            <Button title="Confirm OTP" onPress={confirmCode} />
-          </View>
+          <Button className="mt-4" title="Confirm OTP" onPress={confirmCode} />
         </View>
       )}
     </View>

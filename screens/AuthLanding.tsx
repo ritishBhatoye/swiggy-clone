@@ -25,7 +25,16 @@ const AuthLandingScreen = () => {
           }}
           title={"LOGIN"}
           textClassName="px-12 "
-          className="rounded-sm my-2 py-4 mt-3 w-full"
+          className="rounded-sm  py-4 mt-3 w-full"
+        />
+
+        <Button
+          onPress={() => {
+            router.push("/(auth)/sign-up");
+          }}
+          title={"Create Account"}
+          textClassName="px-12"
+          className="rounded-sm my-2 py-4 w-full"
         />
         <Text className="w-full text-sm  font-medium text-gray-400">
           By clicking, I accept the{" "}

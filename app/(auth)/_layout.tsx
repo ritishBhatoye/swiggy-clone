@@ -26,7 +26,7 @@ export default function AuthLayout() {
           },
         }}
       >
-        <Stack.Screen name="auth-landing" />
+        <Stack.Screen name="index" />
         <Stack.Screen name="sign-in" />
         <Stack.Screen name="otp-verification" />
       </Stack>
