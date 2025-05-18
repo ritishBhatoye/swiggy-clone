@@ -26,7 +26,7 @@ const PhoneNumberInputWithLabel = ({
         {label}
       </Text>
 
-      <View className="border-b pb-2  border-gray-400 rounded-none  bg-swiggy-accent-light">
+      <View className="border-b pb-2 border-gray-400 rounded-none  bg-swiggy-accent-light">
         <PhoneInput
           ref={phoneInputRef}
           defaultValue={phoneNumber}
