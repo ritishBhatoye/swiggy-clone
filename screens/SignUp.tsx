@@ -6,12 +6,15 @@ import { Link, useRouter } from "expo-router";
 import Button from "@/components/atoms/Button";
 import InputWithLabel from "@/components/atoms/InputWithLabel";
 import { useState } from "react";
+import PhoneNumberInputWithLabel from "@/components/atoms/PhoneNumberWithInputLabel";
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp();
   const router = useRouter();
 
   const [emailAddress, setEmailAddress] = useState("");
+  const [mobile, setMobile] = useState("");
+
   const [password, setPassword] = useState("");
   const [pendingVerification, setPendingVerification] = useState(false);
   const [code, setCode] = useState("");
@@ -109,15 +112,22 @@ export default function SignUpScreen() {
             </Text>
           </View>
         </View>
-        <InputWithLabel
-          size="sm"
-          variant="outline"
-          autoCapitalize="none"
-          value={emailAddress}
-          placeholder="@email.com"
-          onChangeText={(email) => setEmailAddress(email)}
-          label={""}
-        />
+        {isMobile ? (
+          <PhoneNumberInputWithLabel
+            phoneNumber={mobile}
+            setPhoneNumber={setMobile}
+          />
+        ) : (
+          <InputWithLabel
+            size="sm"
+            variant="outline"
+            autoCapitalize="none"
+            value={emailAddress}
+            placeholder="@email.com"
+            onChangeText={(email) => setEmailAddress(email)}
+            label={""}
+          />
+        )}
         <InputWithLabel
           size="sm"
           variant="outline"

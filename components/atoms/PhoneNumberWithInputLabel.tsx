@@ -8,7 +8,7 @@ const PhoneNumberInputWithLabel = ({
   phoneNumber,
   setPhoneNumber,
 }: {
-  label: string;
+  label?: string;
   phoneNumber: string;
   setPhoneNumber: (text: string) => void;
 }) => {
@@ -17,7 +17,7 @@ const PhoneNumberInputWithLabel = ({
   const isDarkMode: boolean = colorScheme === "dark";
 
   return (
-    <View className="mb-4">
+    <View className="">
       <Text
         className={`text-gray-500 font-semibold mb-5 ${
           isDarkMode ? "text-white" : "text-gray-500"
@@ -26,7 +26,7 @@ const PhoneNumberInputWithLabel = ({
         {label}
       </Text>
 
-      <View className="border  border-gray-400 rounded-none  bg-swiggy-accent-light">
+      <View className="border-b pb-2  border-gray-400 rounded-none  bg-swiggy-accent-light">
         <PhoneInput
           ref={phoneInputRef}
           defaultValue={phoneNumber}
