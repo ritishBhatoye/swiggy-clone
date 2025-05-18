@@ -1,19 +1,21 @@
-import * as React from "react";
+import React from "react";
+
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
 import { Link, useRouter } from "expo-router";
 import Button from "@/components/atoms/Button";
 import InputWithLabel from "@/components/atoms/InputWithLabel";
+import { useState } from "react";
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp();
   const router = useRouter();
 
-  const [emailAddress, setEmailAddress] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [pendingVerification, setPendingVerification] = React.useState(false);
-  const [code, setCode] = React.useState("");
-
+  const [emailAddress, setEmailAddress] = useState("");
+  const [password, setPassword] = useState("");
+  const [pendingVerification, setPendingVerification] = useState(false);
+  const [code, setCode] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
   // Handle submission of sign-up form
   const onSignUpPress = async () => {
     if (!isLoaded) return;
@@ -84,7 +86,29 @@ export default function SignUpScreen() {
   return (
     <View>
       <>
-        <Text className="text-2xl text-center font-semibold">Sign up</Text>
+        {/* <Text className="text-2xl text-center font-semibold">Sign up</Text> */}
+        <View className="rounded-sm border border-primary-500 flex-row w-full flex justify-around">
+          <View className={`flex-1 p-5 ${isMobile ? "" : "bg-primary-500"} `}>
+            <Text
+              onPress={() => setIsMobile(!isMobile)}
+              className={`text-center ${
+                isMobile ? " text-primary-500" : " text-white"
+              }`}
+            >
+              EMAIL
+            </Text>
+          </View>
+          <View className={`flex-1 p-5 ${isMobile ? " bg-primary-500" : ""}`}>
+            <Text
+              onPress={() => setIsMobile(!isMobile)}
+              className={`text-center ${
+                isMobile ? " text-white" : " text-primary-500"
+              }`}
+            >
+              MOBILE
+            </Text>
+          </View>
+        </View>
         <InputWithLabel
           size="sm"
           variant="outline"

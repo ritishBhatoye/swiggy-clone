@@ -9,6 +9,7 @@ import {
   useBlurOnFulfill,
   useClearByFocusCell,
 } from "react-native-confirmation-code-field";
+import InputWithLabel from "@/components/atoms/InputWithLabel";
 
 const CELL_COUNT = 6;
 
@@ -81,7 +82,7 @@ export default function ClerkOTPLogin() {
             keyboardType="number-pad"
             textContentType="oneTimeCode"
             renderCell={({ index, symbol, isFocused }) => (
-              <TextInput
+              <InputWithLabel
                 key={index}
                 value={symbol}
                 editable={true}
