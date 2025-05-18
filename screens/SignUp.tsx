@@ -91,26 +91,30 @@ export default function SignUpScreen() {
       <>
         {/* <Text className="text-2xl text-center font-semibold">Sign up</Text> */}
         <View className="rounded-sm border border-primary-500 flex-row w-full flex justify-around">
-          <View className={`flex-1 p-5 ${isMobile ? "" : "bg-primary-500"} `}>
+          <TouchableOpacity
+            onPress={() => setIsMobile(false)}
+            className={`flex-1 p-5 ${isMobile ? "" : "bg-primary-500"} `}
+          >
             <Text
-              onPress={() => setIsMobile(!isMobile)}
               className={`text-center ${
                 isMobile ? " text-primary-500" : " text-white"
               }`}
             >
               EMAIL
             </Text>
-          </View>
-          <View className={`flex-1 p-5 ${isMobile ? " bg-primary-500" : ""}`}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => setIsMobile(true)}
+            className={`flex-1 p-5 ${isMobile ? " bg-primary-500" : ""}`}
+          >
             <Text
-              onPress={() => setIsMobile(!isMobile)}
               className={`text-center ${
                 isMobile ? " text-white" : " text-primary-500"
               }`}
             >
               MOBILE
             </Text>
-          </View>
+          </TouchableOpacity>
         </View>
         {isMobile ? (
           <PhoneNumberInputWithLabel
@@ -137,14 +141,12 @@ export default function SignUpScreen() {
           onChangeText={(password) => setPassword(password)}
           label={""}
         />
-        <Button title={"Continue"} />
-        <TouchableOpacity onPress={onSignUpPress}>
-          <Text>Continue</Text>
-        </TouchableOpacity>
-        <View style={{ display: "flex", flexDirection: "row", gap: 3 }}>
+        <Button title={"Continue"} variant="isWhite" />
+
+        <View className="flex flex-row items-center justify-center pt-10 gap-2">
           <Text>Already have an account?</Text>
           <Link href="/sign-in">
-            <Button size="sm" variant="isWhite" title={"Sign in"}></Button>
+            <Text className="text-primary-500">Sign in</Text>
           </Link>
         </View>
       </>
