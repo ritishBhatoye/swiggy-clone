@@ -87,7 +87,7 @@ export default function SignUpScreen() {
   }
 
   return (
-    <View>
+    <View className="w-11/12 mx-auto">
       <>
         {/* <Text className="text-2xl text-center font-semibold">Sign up</Text> */}
         <View className="rounded-sm border border-primary-500 flex-row w-full flex justify-around">
