@@ -116,38 +116,40 @@ export default function SignUpScreen() {
             </Text>
           </TouchableOpacity>
         </View>
-        {isMobile ? (
-          <PhoneNumberInputWithLabel
-            phoneNumber={mobile}
-            setPhoneNumber={setMobile}
-          />
-        ) : (
+        <View className="gap-2 justify-center  pt-10">
+          {isMobile ? (
+            <PhoneNumberInputWithLabel
+              phoneNumber={mobile}
+              setPhoneNumber={setMobile}
+            />
+          ) : (
+            <InputWithLabel
+              size="sm"
+              variant="outline"
+              autoCapitalize="none"
+              value={emailAddress}
+              placeholder="@email.com"
+              onChangeText={(email) => setEmailAddress(email)}
+              label={""}
+            />
+          )}
           <InputWithLabel
             size="sm"
             variant="outline"
-            autoCapitalize="none"
-            value={emailAddress}
-            placeholder="@email.com"
-            onChangeText={(email) => setEmailAddress(email)}
+            value={password}
+            placeholder="password"
+            secureTextEntry={true}
+            onChangeText={(password) => setPassword(password)}
             label={""}
           />
-        )}
-        <InputWithLabel
-          size="sm"
-          variant="outline"
-          value={password}
-          placeholder="password"
-          secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
-          label={""}
-        />
-        <Button title={"Continue"} variant="isWhite" />
+          <Button title={"Continue"} variant="isWhite" className="mt-2" />
 
-        <View className="flex flex-row items-center justify-center pt-10 gap-2">
-          <Text>Already have an account?</Text>
-          <Link href="/sign-in">
-            <Text className="text-primary-500">Sign in</Text>
-          </Link>
+          <View className="flex flex-row items-center justify-center pt-10 gap-2">
+            <Text>Already have an account?</Text>
+            <Link href="/sign-in">
+              <Text className="text-primary-500">Sign in</Text>
+            </Link>
+          </View>
         </View>
       </>
     </View>
