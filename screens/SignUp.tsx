@@ -7,6 +7,7 @@ import Button from "@/components/atoms/Button";
 import InputWithLabel from "@/components/atoms/InputWithLabel";
 import { useState } from "react";
 import PhoneNumberInputWithLabel from "@/components/atoms/PhoneNumberWithInputLabel";
+import Toast from "react-native-toast-message";
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -36,6 +37,11 @@ export default function SignUpScreen() {
       // Set 'pendingVerification' to true to display second form
       // and capture OTP code
       setPendingVerification(true);
+      Toast.show({
+        type: "success",
+        text1: "OTP sent",
+        text2: "Successfully 🚀",
+      });
     } catch (err) {
       // See https://clerk.com/docs/custom-flows/error-handling
       // for more info on error handling
@@ -58,6 +64,10 @@ export default function SignUpScreen() {
       if (signUpAttempt.status === "complete") {
         await setActive({ session: signUpAttempt.createdSessionId });
         router.replace("/");
+        Toast.show({
+          type: "success",
+          text1: "OTP verified ✅",
+        });
       } else {
         // If the status is not complete, check why. User may need to
         // complete further steps.
