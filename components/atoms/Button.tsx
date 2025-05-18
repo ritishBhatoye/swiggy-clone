@@ -1,5 +1,10 @@
 import React from "react";
-import { Pressable, Text, GestureResponderEvent } from "react-native";
+import {
+  Pressable,
+  Text,
+  GestureResponderEvent,
+  TouchableOpacity,
+} from "react-native";
 import clsx from "clsx";
 
 type ButtonVariant = "primary" | "secondary" | "tertiary" | "isWhite";
@@ -75,7 +80,7 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   return (
-    <Pressable
+    <TouchableOpacity
       onPress={onPress}
       className={clsx(
         "rounded-xl items-center",
@@ -98,7 +103,7 @@ const Button: React.FC<ButtonProps> = ({
       >
         {title}
       </Text>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 

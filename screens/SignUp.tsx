@@ -142,7 +142,12 @@ export default function SignUpScreen() {
             onChangeText={(password) => setPassword(password)}
             label={""}
           />
-          <Button title={"Continue"} variant="isWhite" className="mt-2" />
+          <Button
+            onPress={onSignUpPress}
+            title={"Continue"}
+            variant="isWhite"
+            className="mt-2"
+          />
 
           <View className="flex flex-row items-center justify-center pt-10 gap-2">
             <Text>Already have an account?</Text>
