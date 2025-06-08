@@ -79,7 +79,7 @@ export default function SignUpScreen() {
     if (!isLoaded) return;
 
     if (isMobileSignUp) {
-      if (!mobile || !password) {
+      if (!mobile) {
         Toast.show({
           type: "error",
           text1: "Please enter mobile number and password.",
@@ -89,7 +89,6 @@ export default function SignUpScreen() {
       try {
         await signUp.create({
           phoneNumber: mobile,
-          password,
         });
         await signUp.preparePhoneNumberVerification({
           strategy: "phone_code",
@@ -163,16 +162,9 @@ export default function SignUpScreen() {
 
   if (pendingVerification) {
     return (
-      <View className="px-4">
-        <Text className="text-center text-lg font-semibold">
-          Verify your {isMobileSignUp ? "phone number" : "email"}
-        </Text>
-        <InputOtpCode
-          size="sm"
-          value={code}
-          placeholder="Enter your verification code"
-          onOtpChange={setCode}
-        />
+      <View className="px-4  mt-12">
+        <Text className="text-center text-3xl font-semibold">Verify OTP</Text>
+        <InputOtpCode size="sm" value={code} onOtpChange={setCode} />
         <Button onPress={onVerifyPress} title="Verify" />
 
         <View className="mt-4 items-center">
@@ -227,25 +219,28 @@ export default function SignUpScreen() {
             setPhoneNumber={setMobile}
           />
         ) : (
-          <InputWithLabel
-            size="md"
-            variant="outline"
-            autoCapitalize="none"
-            value={emailAddress}
-            placeholder="@email.com"
-            onChangeText={setEmailAddress}
-            label=""
-          />
+          <>
+            <InputWithLabel
+              size="md"
+              variant="outline"
+              autoCapitalize="none"
+              value={emailAddress}
+              placeholder="@email.com"
+              onChangeText={setEmailAddress}
+              label=""
+            />
+            <InputWithLabel
+              size="md"
+              variant="outline"
+              value={password}
+              placeholder="password"
+              secureTextEntry
+              onChangeText={setPassword}
+              label=""
+            />
+          </>
         )}
-        <InputWithLabel
-          size="md"
-          variant="outline"
-          value={password}
-          placeholder="password"
-          secureTextEntry
-          onChangeText={setPassword}
-          label=""
-        />
+
         <Button
           onPress={onSignUpPress}
           title="Continue"
