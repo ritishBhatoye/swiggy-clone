@@ -18,7 +18,6 @@ const AuthLandingScreen = () => {
         <Text className="text-base text-gray-400 font-medium w-full">
           Login/Create Account to manage order
         </Text>
-
         <Button
           onPress={() => {
             router.push("/(auth)/sign-in");
@@ -27,12 +26,19 @@ const AuthLandingScreen = () => {
           textClassName="px-12 "
           className="rounded-sm  py-4 mt-3 w-full"
         />
-
         <Button
           onPress={() => {
             router.push("/(auth)/sign-up");
           }}
           title={"Create Account"}
+          textClassName="px-12"
+          className="rounded-sm my-2 py-4 w-full"
+        />{" "}
+        <Button
+          onPress={() => {
+            router.push("/(tabs)");
+          }}
+          title={"Discover"}
           textClassName="px-12"
           className="rounded-sm my-2 py-4 w-full"
         />
