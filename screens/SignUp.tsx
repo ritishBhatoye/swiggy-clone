@@ -110,17 +110,18 @@ export default function SignUpScreen() {
 
   if (pendingVerification) {
     return (
-      <>
-        <Text className="text-center">Verify your email</Text>
+      <View className="px-4">
+        <Text className="text-center text-lg font-semibold">
+          Verify your email
+        </Text>
         <InputWithLabel
+          size="sm"
           value={code}
           placeholder="Enter your verification code"
           onChangeText={(code) => setCode(code)}
         />
-        <TouchableOpacity onPress={onVerifyPress}>
-          <Text>Verify</Text>
-        </TouchableOpacity>
-      </>
+        <Button onPress={onVerifyPress} title={"Verify"} />
+      </View>
     );
   }
 
