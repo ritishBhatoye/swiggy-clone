@@ -1,14 +1,14 @@
-import React from "react";
-
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import React, { useState, useEffect } from "react";
+import { Text, TouchableOpacity, View } from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
 import { Link, useRouter } from "expo-router";
 import Button from "@/components/atoms/Button";
 import InputWithLabel from "@/components/atoms/InputWithLabel";
-import { useState } from "react";
 import PhoneNumberInputWithLabel from "@/components/atoms/PhoneNumberWithInputLabel";
 import Toast from "react-native-toast-message";
 import InputOtpCode from "@/components/atoms/InputOtpCode";
+
+const OTP_TIMER_DURATION = 60; // 60 seconds
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -16,16 +16,69 @@ export default function SignUpScreen() {
 
   const [emailAddress, setEmailAddress] = useState("");
   const [mobile, setMobile] = useState("");
-
   const [password, setPassword] = useState("");
   const [pendingVerification, setPendingVerification] = useState(false);
   const [code, setCode] = useState("");
-  const [isMobile, setIsMobile] = useState(false);
-  // Handle submission of sign-up form
+  const [isMobileSignUp, setIsMobileSignUp] = useState(false);
+  const [timer, setTimer] = useState(OTP_TIMER_DURATION);
+  const [canResend, setCanResend] = useState(false);
+
+  useEffect(() => {
+    let interval: ReturnType<typeof setInterval>;
+    if (pendingVerification && timer > 0) {
+      interval = setInterval(() => {
+        setTimer((prev) => {
+          if (prev <= 1) {
+            setCanResend(true);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [pendingVerification, timer]);
+
+  const startTimer = () => {
+    setTimer(OTP_TIMER_DURATION);
+    setCanResend(false);
+  };
+
+  const handleResendOTP = async () => {
+    if (!isLoaded) return;
+
+    try {
+      if (isMobileSignUp) {
+        await signUp.preparePhoneNumberVerification({
+          strategy: "phone_code",
+        });
+      } else {
+        await signUp.prepareEmailAddressVerification({
+          strategy: "email_code",
+        });
+      }
+      startTimer();
+      Toast.show({
+        type: "success",
+        text1: "OTP resent",
+        text2: "Successfully 🚀",
+      });
+    } catch (err) {
+      console.error(JSON.stringify(err, null, 2));
+      Toast.show({
+        type: "error",
+        text1: "Failed to resend OTP",
+        text2: "Please try again",
+      });
+    }
+  };
+
   const onSignUpPress = async () => {
     if (!isLoaded) return;
 
-    if (isMobile) {
+    if (isMobileSignUp) {
       if (!mobile || !password) {
         Toast.show({
           type: "error",
@@ -42,6 +95,7 @@ export default function SignUpScreen() {
           strategy: "phone_code",
         });
         setPendingVerification(true);
+        startTimer();
         Toast.show({
           type: "success",
           text1: "OTP sent",
@@ -67,6 +121,7 @@ export default function SignUpScreen() {
           strategy: "email_code",
         });
         setPendingVerification(true);
+        startTimer();
         Toast.show({
           type: "success",
           text1: "OTP sent",
@@ -78,21 +133,13 @@ export default function SignUpScreen() {
     }
   };
 
-  // Handle submission of verification form
   const onVerifyPress = async () => {
     if (!isLoaded) return;
 
     try {
-      let signUpAttempt;
-      if (isMobile) {
-        signUpAttempt = await signUp.attemptPhoneNumberVerification({
-          code,
-        });
-      } else {
-        signUpAttempt = await signUp.attemptEmailAddressVerification({
-          code,
-        });
-      }
+      const signUpAttempt = isMobileSignUp
+        ? await signUp.attemptPhoneNumberVerification({ code })
+        : await signUp.attemptEmailAddressVerification({ code });
 
       if (signUpAttempt.status === "complete") {
         await setActive({ session: signUpAttempt.createdSessionId });
@@ -106,6 +153,11 @@ export default function SignUpScreen() {
       }
     } catch (err) {
       console.error(JSON.stringify(err, null, 2));
+      Toast.show({
+        type: "error",
+        text1: "Invalid OTP",
+        text2: "Please try again",
+      });
     }
   };
 
@@ -113,90 +165,101 @@ export default function SignUpScreen() {
     return (
       <View className="px-4">
         <Text className="text-center text-lg font-semibold">
-          Verify your email
+          Verify your {isMobileSignUp ? "phone number" : "email"}
         </Text>
         <InputOtpCode
           size="sm"
           value={code}
           placeholder="Enter your verification code"
-          // onChangeText={(code: any) => setCode(code)}
+          onOtpChange={setCode}
         />
-        <Button onPress={onVerifyPress} title={"Verify"} />
+        <Button onPress={onVerifyPress} title="Verify" />
+
+        <View className="mt-4 items-center">
+          {timer > 0 ? (
+            <Text className="text-gray-500">Resend OTP in {timer} seconds</Text>
+          ) : (
+            <TouchableOpacity
+              onPress={handleResendOTP}
+              disabled={!canResend}
+              className={`${!canResend ? "opacity-50" : ""}`}
+            >
+              <Text className="text-primary-500 font-semibold">Resend OTP</Text>
+            </TouchableOpacity>
+          )}
+        </View>
       </View>
     );
   }
 
   return (
     <View className="w-11/12 mx-auto">
-      <>
-        {/* <Text className="text-2xl text-center font-semibold">Sign up</Text> */}
-        <View className="rounded-sm border border-primary-500 flex-row w-full flex justify-around">
-          <TouchableOpacity
-            onPress={() => setIsMobile(false)}
-            className={`flex-1 p-5 ${isMobile ? "" : "bg-primary-500"} `}
+      <View className="rounded-sm border border-primary-500 flex-row w-full flex justify-around">
+        <TouchableOpacity
+          onPress={() => setIsMobileSignUp(true)}
+          className={`flex-1 p-5 ${isMobileSignUp ? "bg-primary-500" : ""}`}
+        >
+          <Text
+            className={`text-center ${
+              isMobileSignUp ? "text-white" : "text-primary-500"
+            }`}
           >
-            <Text
-              className={`text-center ${
-                isMobile ? " text-primary-500" : " text-white"
-              }`}
-            >
-              EMAIL
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => setIsMobile(true)}
-            className={`flex-1 p-5 ${isMobile ? " bg-primary-500" : ""}`}
+            MOBILE
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => setIsMobileSignUp(false)}
+          className={`flex-1 p-5 ${!isMobileSignUp ? "bg-primary-500" : ""}`}
+        >
+          <Text
+            className={`text-center ${
+              !isMobileSignUp ? "text-white" : "text-primary-500"
+            }`}
           >
-            <Text
-              className={`text-center ${
-                isMobile ? " text-white" : " text-primary-500"
-              }`}
-            >
-              MOBILE
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View className="gap-2 justify-center  pt-10">
-          {isMobile ? (
-            <PhoneNumberInputWithLabel
-              phoneNumber={mobile}
-              setPhoneNumber={setMobile}
-            />
-          ) : (
-            <InputWithLabel
-              size="md"
-              variant="outline"
-              autoCapitalize="none"
-              value={emailAddress}
-              placeholder="@email.com"
-              onChangeText={(email) => setEmailAddress(email)}
-              label={""}
-            />
-          )}
+            EMAIL
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <View className="gap-2 justify-center pt-10">
+        {isMobileSignUp ? (
+          <PhoneNumberInputWithLabel
+            phoneNumber={mobile}
+            setPhoneNumber={setMobile}
+          />
+        ) : (
           <InputWithLabel
             size="md"
             variant="outline"
-            value={password}
-            placeholder="password"
-            secureTextEntry={true}
-            onChangeText={(password) => setPassword(password)}
-            label={""}
+            autoCapitalize="none"
+            value={emailAddress}
+            placeholder="@email.com"
+            onChangeText={setEmailAddress}
+            label=""
           />
-          <Button
-            onPress={onSignUpPress}
-            title={"Continue"}
-            variant="isWhite"
-            className="mt-2"
-          />
+        )}
+        <InputWithLabel
+          size="md"
+          variant="outline"
+          value={password}
+          placeholder="password"
+          secureTextEntry
+          onChangeText={setPassword}
+          label=""
+        />
+        <Button
+          onPress={onSignUpPress}
+          title="Continue"
+          variant="isWhite"
+          className="mt-2"
+        />
 
-          <View className="flex flex-row items-center justify-center pt-10 gap-2">
-            <Text>Already have an account?</Text>
-            <Link href="/sign-in">
-              <Text className="text-primary-500">Sign in</Text>
-            </Link>
-          </View>
+        <View className="flex flex-row items-center justify-center pt-10 gap-2">
+          <Text>Already have an account?</Text>
+          <Link href="/sign-in">
+            <Text className="text-primary-500">Sign in</Text>
+          </Link>
         </View>
-      </>
+      </View>
     </View>
   );
 }

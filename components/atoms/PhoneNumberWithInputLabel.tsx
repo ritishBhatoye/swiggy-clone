@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { View, Text, ColorSchemeName } from "react-native";
-import PhoneInput from "react-native-phone-number-input";
+import { default as PhoneInput } from "react-native-phone-number-input";
 import { useColorScheme } from "react-native";
 
 const PhoneNumberInputWithLabel = ({
@@ -26,7 +26,7 @@ const PhoneNumberInputWithLabel = ({
         {label}
       </Text>
 
-      <View className="border-b pb-2 border-gray-400 rounded-none  bg-swiggy-accent-light">
+      <View className="border-b pb-2 border-gray-400 rounded-none bg-swiggy-accent-light">
         <PhoneInput
           ref={phoneInputRef}
           defaultValue={phoneNumber}
@@ -34,26 +34,30 @@ const PhoneNumberInputWithLabel = ({
           layout="first"
           onChangeFormattedText={setPhoneNumber}
           containerStyle={{
-            alignItems: "center",
-            display: "flex",
-            flexDirection: "row",
-            backgroundColor: "transparent",
-            borderColor: "transparent",
             width: "100%",
+            backgroundColor: "transparent",
           }}
           textContainerStyle={{
             backgroundColor: "transparent",
             paddingVertical: 0,
+            height: 40,
           }}
           textInputStyle={{
             color: isDarkMode ? "#fff" : "#000",
-            // height: 0,
+            height: 40,
+            fontSize: 16,
           }}
           codeTextStyle={{
             color: isDarkMode ? "#fff" : "#000",
+            fontSize: 16,
           }}
           withShadow={false}
           autoFocus={false}
+          flagButtonStyle={{
+            backgroundColor: "transparent",
+            width: 50,
+          }}
+          disableArrowIcon={false}
         />
       </View>
     </View>
