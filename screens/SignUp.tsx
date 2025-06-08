@@ -24,28 +24,56 @@ export default function SignUpScreen() {
   const onSignUpPress = async () => {
     if (!isLoaded) return;
 
-    // Start sign-up process using email and password provided
-    try {
-      await signUp.create({
-        emailAddress,
-        password,
-      });
-
-      // Send user an email with verification code
-      await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
-
-      // Set 'pendingVerification' to true to display second form
-      // and capture OTP code
-      setPendingVerification(true);
-      Toast.show({
-        type: "success",
-        text1: "OTP sent",
-        text2: "Successfully 🚀",
-      });
-    } catch (err) {
-      // See https://clerk.com/docs/custom-flows/error-handling
-      // for more info on error handling
-      console.error(JSON.stringify(err, null, 2));
+    if (isMobile) {
+      if (!mobile || !password) {
+        Toast.show({
+          type: "error",
+          text1: "Please enter mobile number and password.",
+        });
+        return;
+      }
+      try {
+        await signUp.create({
+          phoneNumber: mobile,
+          password,
+        });
+        await signUp.preparePhoneNumberVerification({
+          strategy: "phone_code",
+        });
+        setPendingVerification(true);
+        Toast.show({
+          type: "success",
+          text1: "OTP sent",
+          text2: "Successfully 🚀",
+        });
+      } catch (err) {
+        console.error(JSON.stringify(err, null, 2));
+      }
+    } else {
+      if (!emailAddress || !password) {
+        Toast.show({
+          type: "error",
+          text1: "Please enter email and password.",
+        });
+        return;
+      }
+      try {
+        await signUp.create({
+          emailAddress,
+          password,
+        });
+        await signUp.prepareEmailAddressVerification({
+          strategy: "email_code",
+        });
+        setPendingVerification(true);
+        Toast.show({
+          type: "success",
+          text1: "OTP sent",
+          text2: "Successfully 🚀",
+        });
+      } catch (err) {
+        console.error(JSON.stringify(err, null, 2));
+      }
     }
   };
 
@@ -54,13 +82,17 @@ export default function SignUpScreen() {
     if (!isLoaded) return;
 
     try {
-      // Use the code the user provided to attempt verification
-      const signUpAttempt = await signUp.attemptEmailAddressVerification({
-        code,
-      });
+      let signUpAttempt;
+      if (isMobile) {
+        signUpAttempt = await signUp.attemptPhoneNumberVerification({
+          code,
+        });
+      } else {
+        signUpAttempt = await signUp.attemptEmailAddressVerification({
+          code,
+        });
+      }
 
-      // If verification was completed, set the session to active
-      // and redirect the user
       if (signUpAttempt.status === "complete") {
         await setActive({ session: signUpAttempt.createdSessionId });
         router.replace("/");
@@ -69,13 +101,9 @@ export default function SignUpScreen() {
           text1: "OTP verified ✅",
         });
       } else {
-        // If the status is not complete, check why. User may need to
-        // complete further steps.
         console.error(JSON.stringify(signUpAttempt, null, 2));
       }
     } catch (err) {
-      // See https://clerk.com/docs/custom-flows/error-handling
-      // for more info on error handling
       console.error(JSON.stringify(err, null, 2));
     }
   };
@@ -134,7 +162,7 @@ export default function SignUpScreen() {
             />
           ) : (
             <InputWithLabel
-              size="sm"
+              size="md"
               variant="outline"
               autoCapitalize="none"
               value={emailAddress}
@@ -144,7 +172,7 @@ export default function SignUpScreen() {
             />
           )}
           <InputWithLabel
-            size="sm"
+            size="md"
             variant="outline"
             value={password}
             placeholder="password"
