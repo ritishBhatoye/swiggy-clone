@@ -8,6 +8,7 @@ import InputWithLabel from "@/components/atoms/InputWithLabel";
 import { useState } from "react";
 import PhoneNumberInputWithLabel from "@/components/atoms/PhoneNumberWithInputLabel";
 import Toast from "react-native-toast-message";
+import InputOtpCode from "@/components/atoms/InputOtpCode";
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -114,11 +115,11 @@ export default function SignUpScreen() {
         <Text className="text-center text-lg font-semibold">
           Verify your email
         </Text>
-        <InputWithLabel
+        <InputOtpCode
           size="sm"
           value={code}
           placeholder="Enter your verification code"
-          onChangeText={(code) => setCode(code)}
+          // onChangeText={(code: any) => setCode(code)}
         />
         <Button onPress={onVerifyPress} title={"Verify"} />
       </View>
