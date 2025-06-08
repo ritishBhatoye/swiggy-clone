@@ -1,4 +1,4 @@
-export interface CarouselCardType {
+interface CarouselCardType {
   id: number;
   shopName: string;
   offer: string;
@@ -9,18 +9,18 @@ export interface CarouselCardType {
   color: string;
 }
 
-export interface MenuCardDataType {
+interface MenuCardDataType {
   id: number;
   title: string;
   image: ImageSourcePropType;
 }
 
-export interface FilterOptionsDataType {
+interface FilterOptionsDataType {
   id: number;
   label: string;
 }
 
-export interface CategoryCardDataType {
+interface CategoryCardDataType {
   id: number;
   image: ImageSourcePropType;
   offer: string;
@@ -32,16 +32,26 @@ export interface CategoryCardDataType {
   distance: string;
 }
 
-export interface SortDataType {
+interface SortDataType {
   id: number;
   value: string;
   label: string;
   color: string;
 }
 
-export interface FilterOptionDataType {
+interface FilterOptionDataType {
   id: number;
   label: string;
   value: string;
   options: RadioButtonProps[];
+}
+
+interface RestaurantCardDataType {
+  id: number;
+  image: string;
+  name: string;
+  rating: string;
+  location: string;
+  popularDish: string;
+  offers: string[];
 }

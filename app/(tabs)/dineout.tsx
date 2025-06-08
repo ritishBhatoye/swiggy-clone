@@ -1,9 +1,16 @@
+import TopMenuBar from "@/components/food/TopMenuBar";
 import React from "react";
 
-import { View } from "react-native";
+import { SafeAreaView, View } from "react-native";
 
 const DineoutScreen = () => {
-  return <View className="">DineoutScreen</View>;
+  return (
+    <SafeAreaView className="bg-white h-full  ">
+      <View className="w-11/12 mx-auto px-2">
+        <TopMenuBar />
+      </View>
+    </SafeAreaView>
+  );
 };
 
 export default DineoutScreen;
