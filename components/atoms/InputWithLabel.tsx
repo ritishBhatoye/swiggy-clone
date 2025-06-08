@@ -46,7 +46,7 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
   };
 
   const variantStyles = {
-    box: "bg-swiggy-accent-light border-2 border-swiggy-primary",
+    box: "bg-swiggy-accent-light border border-swiggy-primary",
     outline: "bg-transparent border-b border-gray-400",
   };
 
