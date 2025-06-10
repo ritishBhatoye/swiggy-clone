@@ -1,4 +1,4 @@
-export const restaurantData: RestaurantCardType[] = [
+export const restaurantData: RestaurantCardDataType[] = [
   {
     id: 1,
     image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4",
