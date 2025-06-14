@@ -69,6 +69,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="reorder"
         options={{
+          headerTitle: "Reorder",
+          headerTitleAlign: "center",
           title: "Reorder",
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
