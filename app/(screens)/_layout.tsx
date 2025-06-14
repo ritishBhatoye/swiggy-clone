@@ -21,7 +21,10 @@ const ScreensLayout = () => {
             </TouchableOpacity>
           ),
           headerRight: () => (
-            <TouchableOpacity className="p-1 px-2 rounded-2xl bg-black/40 ">
+            <TouchableOpacity
+              onPress={() => router.push("/(screens)/help")}
+              className="p-1 px-2 rounded-2xl bg-black/40 "
+            >
               <Text className="text-white text-sm">Help</Text>
             </TouchableOpacity>
           ),
