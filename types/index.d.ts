@@ -55,7 +55,8 @@ interface RestaurantCardDataType {
   popularDish: string;
   offers: string[];
 }
-interface ActionTileProps {
+interface ActionTileDataType {
+  id?: number;
   leadingIcon?: React.ReactNode;
   title: string;
   subTitle: string;

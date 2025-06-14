@@ -2,22 +2,25 @@ import React from "react";
 
 import { View, Text } from "react-native";
 
-const ActionTile = ({
-  title,
-  subTitle,
-  leadingIcon,
-  TrailingIcon,
-}: ActionTileProps) => {
+interface props {
+  ActionData: ActionTileDataType;
+}
+
+const ActionTile = ({ ActionData }: props) => {
   return (
     <View className="flex flex-row items-center justify-between">
       <View className="flex flex-row items-center gap-1">
-        {leadingIcon}
+        {ActionData.leadingIcon}
         <View className="flex flex-col items-start">
-          <Text className="text-lg font-bold text-black">{title}</Text>
-          <Text className="text-sm font-normal text-slate-500">{subTitle}</Text>
+          <Text className="text-lg font-bold text-black">
+            {ActionData.title}
+          </Text>
+          <Text className="text-sm font-normal text-slate-500">
+            {ActionData.subTitle}
+          </Text>
         </View>
       </View>
-      {TrailingIcon}
+      {ActionData.TrailingIcon}
     </View>
   );
 };
