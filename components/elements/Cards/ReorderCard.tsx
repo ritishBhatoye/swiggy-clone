@@ -12,14 +12,14 @@ const ReorderCard = ({ items }: props) => {
   const restaurant = items.restaurant;
   const itemsOrdered = items.itemsOrdered;
   return (
-    <TouchableOpacity className="bg-white p-2.5 border-white rounded-xl border-[0.3px]">
+    <View className="bg-white p-2.5 border-white rounded-xl border-[0.3px]">
       <View className="rounded-t-xl  p-4 bg-gray-200 flex flex-row items-start justify-between">
         <View className="flex flex-row items-center gap-3">
           <Image
             source={{ uri: restaurant?.image }}
-            style={{ width: 80, height: 70, borderRadius: 10 }}
+            style={{ width: 50, height: 50, borderRadius: 10 }}
           />
-          <View className="flex flex-col items-start gap-4">
+          <View className="flex flex-col items-start gap-3">
             <Text className="text-md text-black font-bold">
               {restaurant.name} {restaurant.deliveryTime}
             </Text>
@@ -58,7 +58,7 @@ const ReorderCard = ({ items }: props) => {
           className="p-2 border-[0.3px] border-gray-400 rounded-md"
         />
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 
