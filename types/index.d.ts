@@ -80,6 +80,7 @@ interface ReorderCardDataType {
     image: string;
     deliveryTime: string;
   };
+  cheapDishPrice: string;
   itemsOrdered: {
     dish: string;
     price: string;
