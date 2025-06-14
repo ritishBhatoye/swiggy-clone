@@ -4,7 +4,7 @@ import { View, Text } from "react-native";
 
 const ProfileCard = () => {
   return (
-    <View className="flex flex-col items-start bg-red-950">
+    <View className="flex flex-col items-start bg-red-950 p-5">
       <Text className="text-lg font-bold">RITISH</Text>
       <Text className="text-md font-thin ">
         +91 7042421344 . ritish@gmail.com
