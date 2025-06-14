@@ -1,6 +1,6 @@
 import { Tabs } from "expo-router";
 import React from "react";
-import { Platform } from "react-native";
+import { Platform, TouchableOpacity } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { HapticTab } from "@/components/HapticTab";
 
@@ -69,6 +69,11 @@ export default function TabLayout() {
       <Tabs.Screen
         name="reorder"
         options={{
+          headerLeft: () => (
+            <TouchableOpacity>
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
           headerTitle: "REORDER",
           headerTitleStyle: { fontWeight: 700, fontSize: 18 },
           headerShown: true,
