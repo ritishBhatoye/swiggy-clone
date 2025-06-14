@@ -55,10 +55,21 @@ interface RestaurantCardDataType {
   popularDish: string;
   offers: string[];
 }
+
 interface ActionTileDataType {
   id?: number;
-  leadingIcon?: React.ReactNode;
+  leadingIcon?: {
+    name: string;
+    size: number;
+    color: string;
+    type: any;
+  };
   title: string;
   subTitle: string;
-  TrailingIcon?: React.ReactNode;
+  TrailingIcon?: {
+    name: string;
+    size: number;
+    color: string;
+    type: any;
+  };
 }
