@@ -3,8 +3,10 @@ import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 
 import { View, Text, TouchableOpacity } from "react-native";
+import { Router, useRouter } from "expo-router";
 
 const LocationAndAccount = () => {
+  const router: Router = useRouter();
   return (
     <View className="flex flex-row items-center gap-4 justify-between w-full">
       <View className="flex flex-col items-start gap-2">
@@ -24,7 +26,7 @@ const LocationAndAccount = () => {
             <Text className="text-primary-600 font-bold text-md">one</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push("/(screens)/profile")}>
           <View className="rounded-full flex justify-center bg-black/50 p-2">
             <Ionicons name="person" size={18} color={"white"} />
           </View>
