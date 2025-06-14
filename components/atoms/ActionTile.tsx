@@ -20,8 +20,8 @@ const ActionTile = ({
       <View className="flex flex-row items-center gap-1">
         {leadingIcon}
         <View className="flex flex-col items-start">
-          <Text className="text-lg font-bold">{title}</Text>
-          <Text className="text-sm font-normal">{subTitle}</Text>
+          <Text className="text-lg font-bold text-black">{title}</Text>
+          <Text className="text-sm font-normal text-slate-500">{subTitle}</Text>
         </View>
       </View>
       {TrailingIcon}
