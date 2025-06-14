@@ -4,8 +4,8 @@ import { View, Text, TouchableOpacity } from "react-native";
 
 const ProfileCard = () => {
   return (
-    <View className="flex flex-col items-start bg-red-950 p-5 py-10 gap-6">
-      <Text className="text-lg font-bold text-white">RITISH</Text>
+    <View className="flex flex-col items-start bg-red-950 p-5 py-10 gap-4">
+      <Text className="text-2xl font-bold text-white">RITISH</Text>
       <Text className="text-md font-thin text-white">
         +91 7042421344 . ritish@gmail.com
       </Text>
