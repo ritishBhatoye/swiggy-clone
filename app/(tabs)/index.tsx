@@ -7,7 +7,6 @@ import MenuSection from "@/components/food/MenuSection";
 import TopMenuBar from "@/components/food/TopMenuBar";
 import { CarouselData } from "@/constants/dummyData/CardCarouselData";
 
-import { CarouselCardType } from "@/types";
 import { ScrollView, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 

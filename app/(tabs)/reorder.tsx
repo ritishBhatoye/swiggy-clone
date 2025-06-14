@@ -1,12 +1,19 @@
+import SearchInputField from "@/components/food/TopMenuBar/SearchInputField";
 import React from "react";
 
-import { View, Text } from "react-native";
+import { View, Text, SafeAreaView } from "react-native";
 
 const ReorderScreen = () => {
   return (
-    <View>
-      <Text>ReorderScreen</Text>
-    </View>
+    <SafeAreaView>
+      <View className="bg-white p-5">
+        <SearchInputField
+          isLeadingIcon={false}
+          fieldText="Search by restaurant or dish"
+          icon={"search"}
+        />
+      </View>
+    </SafeAreaView>
   );
 };
 
