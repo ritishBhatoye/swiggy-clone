@@ -12,8 +12,8 @@ const ReorderCard = ({ items }: props) => {
   const restaurant = items.restaurant;
   const itemsOrdered = items.itemsOrdered;
   return (
-    <View className="bg-white rounded-xl border-[0.3px]">
-      <View className="rounded-t-xl m-2 p-4 bg-gray-200 flex flex-row items-start justify-between">
+    <TouchableOpacity className="bg-white p-2.5 border-white rounded-xl border-[0.3px]">
+      <View className="rounded-t-xl  p-4 bg-gray-200 flex flex-row items-start justify-between">
         <View className="flex flex-row items-center gap-3">
           <Image
             source={{ uri: restaurant?.image }}
@@ -34,8 +34,8 @@ const ReorderCard = ({ items }: props) => {
           <Ionicons name="heart-outline" size={15} color={"#6b7280"} />
         </TouchableOpacity>
       </View>
-      <View className="">
-        <View>
+      <View className="flex mt-2 flex-row items-center justify-between">
+        <View className="flex flex-row items-start">
           <Ionicons
             name="radio-button-on"
             size={20}
@@ -50,15 +50,15 @@ const ReorderCard = ({ items }: props) => {
               {itemsOrdered.price}
             </Text>
           </View>
-          <Ionicons
-            name="add-outline"
-            color={"#00FF00"}
-            size={12}
-            className="p-2 border-[0.3px] rounded-md"
-          />
         </View>
+        <Ionicons
+          name="add"
+          color={"#00FF00"}
+          size={20}
+          className="p-2 border-[0.3px] border-gray-400 rounded-md"
+        />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
