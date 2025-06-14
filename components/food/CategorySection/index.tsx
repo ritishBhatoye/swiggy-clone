@@ -3,7 +3,7 @@ import { CategoryDummyData } from "@/constants/dummyData/CategoryData";
 import React from "react";
 
 import { View, Text } from "react-native";
-import Filters from "../Filters";
+import Filters from "../../elements/Filters";
 
 const CategorySection = () => {
   return (

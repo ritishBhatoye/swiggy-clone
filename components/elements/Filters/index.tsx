@@ -1,10 +1,9 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import React, { useRef, useState } from "react";
 import { router, useLocalSearchParams } from "expo-router";
 import { ScrollView } from "react-native";
 
 import { FiltersOptionsData } from "@/constants/dummyData/Filters";
-import { FilterOptionsDataType } from "@/types";
 
 import FilterBottomSheet from "./FilterUtils/FilterBottomSheet";
 

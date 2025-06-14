@@ -1,7 +1,7 @@
 import MenuCard from "@/components/elements/Cards/MenuCard";
 import { TitleWithBar } from "@/components/elements/TitleWithBar";
 import { MenuData } from "@/constants/dummyData/MenuData";
-import { MenuCardDataType } from "@/types";
+
 import React from "react";
 import { ScrollView, View } from "react-native";
 
