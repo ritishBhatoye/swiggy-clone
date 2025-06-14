@@ -69,7 +69,10 @@ export default function TabLayout() {
       <Tabs.Screen
         name="reorder"
         options={{
-          headerTitle: "Reorder",
+          headerTitle: "REORDER",
+          headerTitleStyle: { fontWeight: 700, fontSize: 18 },
+          headerShown: true,
+          headerShadowVisible: false,
           headerTitleAlign: "center",
           title: "Reorder",
           tabBarIcon: ({ color, focused }) => (
