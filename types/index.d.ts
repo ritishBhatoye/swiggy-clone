@@ -73,3 +73,16 @@ interface ActionTileDataType {
     type: any;
   };
 }
+
+interface ReorderCardDataType {
+  restaurant: {
+    name: string;
+    image: string;
+    deliveryTime: string;
+  };
+  itemsOrdered: {
+    dish: string;
+    price: string;
+    isVeg: boolean;
+  };
+}
