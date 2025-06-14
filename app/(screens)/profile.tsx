@@ -3,7 +3,13 @@ import ProfileCard from "@/components/settings/ProfileCard";
 import { SettingTileData } from "@/constants/dummyData/settings";
 import React from "react";
 
-import { View, Text, SafeAreaView, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 
 const Profile = () => {
   return (
@@ -19,6 +25,11 @@ const Profile = () => {
           </View>
         )}
       />
+      <TouchableOpacity className="py-4 px-5 bg-white">
+        <Text className="text-black text-start text-lg font-semibold">
+          LOGOUT
+        </Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
