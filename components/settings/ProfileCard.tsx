@@ -9,9 +9,9 @@ const ProfileCard = () => {
       <Text className="text-md font-thin text-white">
         +91 7042421344 . ritish@gmail.com
       </Text>
-      <TouchableOpacity className="flex-row items-center gap-1.4">
+      <TouchableOpacity className="flex-row items-center gap-2">
         <Text className="text-md font-medium text-white">Edit Profile</Text>
-        <Ionicons name="chevron-forward-outline" color={"white"} size={10} />
+        <Ionicons name="chevron-forward-outline" color={"white"} size={16} />
       </TouchableOpacity>
     </View>
   );
