@@ -1,7 +1,9 @@
+import ReorderCard from "@/components/elements/Cards/ReorderCard";
 import SearchInputField from "@/components/food/TopMenuBar/SearchInputField";
+import { reorderData } from "@/constants/dummyData/reorder";
 import React from "react";
 
-import { View, Text, SafeAreaView, ScrollView } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, FlatList } from "react-native";
 
 const ReorderScreen = () => {
   return (
@@ -14,6 +16,11 @@ const ReorderScreen = () => {
             icon={"search"}
           />
         </View>
+        <FlatList
+          data={reorderData}
+          keyExtractor={(item: any) => item.id}
+          renderItem={({ item }) => <ReorderCard items={item} />}
+        />
       </ScrollView>
     </SafeAreaView>
   );
