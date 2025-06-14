@@ -23,7 +23,26 @@ const ReorderCard = () => {
           <Ionicons name="heart-outline" size={15} color={"#6b7280"} />
         </TouchableOpacity>
       </View>
-      <View className=""></View>
+      <View className="">
+        <View>
+          <Ionicons
+            name="radio-button-on"
+            size={20}
+            color={isVeg ? "#00FF00" : "#FF0000"}
+            style={{ marginRight: 5 }}
+          />
+          <View className="flex flex-col items-start">
+            <Text className="text-black text-lg font-medium"></Text>
+            <Text className="text-black text-sm font-medium"></Text>
+          </View>
+          <Ionicons
+            name="add-outline"
+            color={"#00FF00"}
+            size={12}
+            className="p-2 border-[0.3px] rounded-md"
+          />
+        </View>
+      </View>
     </View>
   );
 };
