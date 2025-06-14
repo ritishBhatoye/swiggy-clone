@@ -7,7 +7,7 @@ const forwardIcon = {
   type: Ionicons,
 };
 
-const ActionTileData = [
+export const ActionTileData = [
   {
     id: 1,
     title: "Swiggy HDFC Bank Credit Card",
