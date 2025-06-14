@@ -19,16 +19,20 @@ const Profile = () => {
       <ProfileCard />
       <ScrollView>
         <FlatList
-          contentContainerClassName="px-5 gap-4  bg-white"
+          contentContainerClassName={`px-5 gap-4  bg-white`}
           keyExtractor={(item) => item.id.toString()}
           data={SettingTileData}
-          renderItem={({ item }: { item: any }) => (
-            <View className="border-b-[0.2px] py-5">
+          renderItem={({ item, index }: { item: any; index: number }) => (
+            <View
+              className={`${
+                index === SettingTileData.length - 1 ? "" : "border-b-[0.2px]"
+              }  py-5`}
+            >
               <ActionTile actionData={item} />
             </View>
           )}
         />
-        <TouchableOpacity className="py-4 px-5 bg-white flex flex-row justify-between my-4">
+        <TouchableOpacity className="p-5 bg-white flex flex-row justify-between my-4">
           <Text className="text-black text-start text-lg font-semibold">
             LOGOUT
           </Text>
