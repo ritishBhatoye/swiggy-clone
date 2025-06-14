@@ -12,19 +12,19 @@ const ReorderCard = ({ items }: props) => {
   const restaurant = items.restaurant;
   const itemsOrdered = items.itemsOrdered;
   return (
-    <View className="bg-white rounded-xl border">
-      <View className="rounded-t-xl bg-gray-300 flex flex-row items-start justify-between">
-        <View className="flex flex-row items-center gap-2">
+    <View className="bg-white rounded-xl border-[0.3px]">
+      <View className="rounded-t-xl m-2 p-4 bg-gray-200 flex flex-row items-start justify-between">
+        <View className="flex flex-row items-center gap-3">
           <Image
             source={{ uri: restaurant?.image }}
-            style={{ width: 100, height: 100 }}
+            style={{ width: 80, height: 70, borderRadius: 10 }}
           />
-          <View className="flex flex-col items-start">
+          <View className="flex flex-col items-start gap-4">
             <Text className="text-md text-black font-bold">
               {restaurant.name} {restaurant.deliveryTime}
             </Text>
-            <View className="flex flex-row items-center">
-              <Ionicons name="pricetag-outline" color={"#EF4F27"} size={8} />
+            <View className="flex flex-row items-center gap-2">
+              <Ionicons name="pricetag-outline" color={"#EF4F27"} size={15} />
               <Text className="text-sm">Items at ₹{items.cheapDishPrice}</Text>
               <Text className="text-md text-black font-bold ">+</Text>
             </View>

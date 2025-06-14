@@ -18,6 +18,7 @@ const ReorderScreen = () => {
         </View>
         <FlatList
           data={reorderData}
+          contentContainerClassName="px-5 gap-5"
           keyExtractor={(item: any) => item.id}
           renderItem={({ item }) => <ReorderCard items={item} />}
         />

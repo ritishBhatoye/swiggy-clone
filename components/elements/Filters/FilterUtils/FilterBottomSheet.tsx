@@ -1,5 +1,5 @@
 import { FilterOption } from "@/constants/dummyData/Filters";
-import { FilterOptionDataType, SortDataType } from "@/types";
+
 import React, { useState, forwardRef } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import ActionSheet from "react-native-actions-sheet";
