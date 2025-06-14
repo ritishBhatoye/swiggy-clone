@@ -3,24 +3,24 @@ import React from "react";
 import { View, Text } from "react-native";
 
 interface props {
-  ActionData: ActionTileDataType;
+  actionData: ActionTileDataType;
 }
 
-const ActionTile = ({ ActionData }: props) => {
+const ActionTile = ({ actionData }: props) => {
   return (
     <View className="flex flex-row items-center justify-between">
       <View className="flex flex-row items-center gap-1">
-        {ActionData.leadingIcon}
+        {actionData.leadingIcon}
         <View className="flex flex-col items-start">
           <Text className="text-lg font-bold text-black">
-            {ActionData.title}
+            {actionData.title}
           </Text>
           <Text className="text-sm font-normal text-slate-500">
-            {ActionData.subTitle}
+            {actionData.subTitle}
           </Text>
         </View>
       </View>
-      {ActionData.TrailingIcon}
+      {actionData.TrailingIcon}
     </View>
   );
 };

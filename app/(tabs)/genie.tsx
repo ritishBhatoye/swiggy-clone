@@ -12,7 +12,9 @@ const GenieScreen = () => {
       <FlatList
         keyExtractor={(item) => item.id.toString()}
         data={SettingTileData}
-        renderItem={({ item }) => <ActionTile />}
+        renderItem={({ item }: { item: any }) => (
+          <ActionTile actionData={item} />
+        )}
       />
     </SafeAreaView>
   );
