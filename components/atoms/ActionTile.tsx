@@ -2,13 +2,6 @@ import React from "react";
 
 import { View, Text } from "react-native";
 
-interface ActionTileProps {
-  leadingIcon?: React.ReactNode;
-  title: string;
-  subTitle: string;
-  TrailingIcon?: React.ReactNode;
-}
-
 const ActionTile = ({
   title,
   subTitle,
