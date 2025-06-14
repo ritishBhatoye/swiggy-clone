@@ -1,13 +1,13 @@
 import React from "react";
 
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import { Ionicons } from "@expo/vector-icons";
 
 const ReorderCard = () => {
   return (
     <View className="bg-white rounded-xl border">
-      <View className="rounded-t-xl bg-gray-300 flex flex-row items-center justify-between">
+      <View className="rounded-t-xl bg-gray-300 flex flex-row items-start justify-between">
         <View className="flex flex-row items-center gap-2">
           <Image source={{ uri: "" }} style={{ width: 100, height: 100 }} />
           <View className="flex flex-col items-start">
@@ -19,8 +19,11 @@ const ReorderCard = () => {
             </View>
           </View>
         </View>
-        <Ionicons name="heart-outline" size={15} color={"#6b7280"} />
+        <TouchableOpacity>
+          <Ionicons name="heart-outline" size={15} color={"#6b7280"} />
+        </TouchableOpacity>
       </View>
+      <View className=""></View>
     </View>
   );
 };
