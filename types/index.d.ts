@@ -66,7 +66,7 @@ interface ActionTileDataType {
   };
   title: string;
   subTitle: string;
-  TrailingIcon?: {
+  trailingIcon?: {
     name: string;
     size: number;
     color: string;

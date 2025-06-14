@@ -1,6 +1,6 @@
 import React from "react";
 
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 
 interface props {
   actionData: ActionTileDataType;
@@ -8,10 +8,10 @@ interface props {
 
 const ActionTile = ({ actionData }: props) => {
   const LeadingIconComponent = actionData.leadingIcon?.type;
-  const TrailingIconComponent = actionData.TrailingIcon?.type;
+  const TrailingIconComponent = actionData.trailingIcon?.type;
 
   return (
-    <View className="flex flex-row items-center justify-between">
+    <TouchableOpacity className="flex flex-row items-center justify-between">
       <View className="flex flex-row items-center gap-1">
         {actionData.leadingIcon && LeadingIconComponent && (
           <LeadingIconComponent
@@ -20,7 +20,7 @@ const ActionTile = ({ actionData }: props) => {
             color={actionData.leadingIcon.color}
           />
         )}
-        <View className="flex flex-col items-start">
+        <View className="flex flex-col items-start gap-2">
           <Text className="text-lg font-bold text-black">
             {actionData.title}
           </Text>
@@ -29,14 +29,14 @@ const ActionTile = ({ actionData }: props) => {
           </Text>
         </View>
       </View>
-      {actionData.TrailingIcon && TrailingIconComponent && (
+      {actionData.trailingIcon && TrailingIconComponent && (
         <TrailingIconComponent
-          name={actionData.TrailingIcon.name}
-          size={actionData.TrailingIcon.size}
-          color={actionData.TrailingIcon.color}
+          name={actionData.trailingIcon.name}
+          size={actionData.trailingIcon.size}
+          color={actionData.trailingIcon.color}
         />
       )}
-    </View>
+    </TouchableOpacity>
   );
 };
 
