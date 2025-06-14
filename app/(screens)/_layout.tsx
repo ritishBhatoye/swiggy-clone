@@ -13,14 +13,16 @@ const ScreensLayout = () => {
           headerStyle: { backgroundColor: "#7f1d1d" },
           headerShadowVisible: false,
           headerTitle: "",
+          headerTitleAlign: "left",
+          headerTintColor: "white",
           headerLeft: () => (
             <TouchableOpacity onPress={() => router.back()}>
               <Ionicons name="chevron-back-outline" color={"white"} size={20} />
             </TouchableOpacity>
           ),
           headerRight: () => (
-            <TouchableOpacity className="p-1 px-2 rounded-2xl bg-black/40">
-              <Text className="text-white text-sm ">Help</Text>
+            <TouchableOpacity className="p-1 px-2 rounded-2xl bg-black/40 ">
+              <Text className="text-white text-sm">Help</Text>
             </TouchableOpacity>
           ),
         }}

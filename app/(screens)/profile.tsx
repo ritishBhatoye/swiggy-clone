@@ -7,7 +7,6 @@ import {
   View,
   Text,
   SafeAreaView,
-  FlatList,
   TouchableOpacity,
   Animated,
 } from "react-native";
@@ -19,7 +18,7 @@ const Profile = () => {
 
   useEffect(() => {
     const listener = scrollY.addListener(({ value }) => {
-      if (value > 100) {
+      if (value > 130) {
         navigation.setOptions({ headerTitle: "My Account" });
       } else {
         navigation.setOptions({ headerTitle: "" });
@@ -42,7 +41,6 @@ const Profile = () => {
       >
         <ProfileCard />
 
-        {/* FlatList won't work directly inside ScrollView. So render manually */}
         <View className="px-5 bg-white">
           {SettingTileData.map((item, index) => (
             <View
