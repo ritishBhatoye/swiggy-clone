@@ -13,8 +13,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch, useSelector } from "react-redux";
 import { setMessages as updateMessages } from "@/store/features/genieSlice";
 
-const genAI = new GoogleGenerativeAI("YOUR_GEMINI_API_KEY");
-const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+const genAI = new GoogleGenerativeAI("AIzaSyDh1rUYZ8pdOzKDtkzD70MfVO8uSYmEJbM");
+const model = genAI.getGenerativeModel({ model: "models/gemini-1.5-flash" });
 
 const allFilters = [
   "High Protein",
@@ -70,15 +70,29 @@ export default function GenieTab() {
   const rotateFilters = () => {
     const shuffled = [...allFilters].sort(() => 0.5 - Math.random());
     setFilters(shuffled.slice(0, 4));
-    setSelectedFilters([]); // clear previous selections on new session
+    setSelectedFilters([]);
   };
 
   const toggleFilter = (filter: string) => {
-    setSelectedFilters((prev) =>
-      prev.includes(filter)
+    if (loading) return; // Prevent toggling while API call is in progress
+
+    setSelectedFilters((prev) => {
+      const newFilters = prev.includes(filter)
         ? prev.filter((f) => f !== filter)
-        : [...prev, filter]
-    );
+        : [...prev, filter];
+
+      const filterMessage =
+        newFilters.length > 0
+          ? `Suggest food based on these filters: ${newFilters.join(", ")}`
+          : "";
+      setInput(filterMessage);
+
+      if (filterMessage) {
+        handleSend();
+      }
+
+      return newFilters;
+    });
   };
 
   const handleSend = async () => {
@@ -112,8 +126,32 @@ export default function GenieTab() {
   return (
     <SafeAreaView className="flex-1 bg-white px-4 pt-6">
       {/* Filter Chips */}
+      <View className="flex-row flex w-full gap-2 px-3 mb-4">
+        {filters.map((filter) => (
+          <TouchableOpacity
+            key={filter}
+            onPress={() => toggleFilter(filter)}
+            disabled={loading} // Disable button while loading
+            className={`px-3 py-1 rounded-full border ${
+              selectedFilters.includes(filter)
+                ? "bg-orange-500 border-orange-500"
+                : "border-gray-300"
+            } ${loading ? "opacity-50" : ""}`}
+          >
+            <Text
+              className={`text-sm ${
+                selectedFilters.includes(filter)
+                  ? "text-white"
+                  : "text-gray-700"
+              }`}
+            >
+              {filter}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
 
-      <ScrollView className="flex-1 mb-24">
+      <ScrollView className="flex-1">
         {messages.map((msg: any, index: any) => (
           <View
             key={index}
@@ -132,44 +170,22 @@ export default function GenieTab() {
         <ActivityIndicator size="large" color="#EF4F27" className="mb-3" />
       )}
 
-      <View className="flex-col flex-1 items-center justify-end gap-2 mb-24">
-        <ScrollView className="flex-row flex-wrap gap-2 mb-4">
-          {filters.map((filter) => (
-            <TouchableOpacity
-              key={filter}
-              onPress={() => toggleFilter(filter)}
-              className={`px-3 py-1 rounded-full border ${
-                selectedFilters.includes(filter)
-                  ? "bg-orange-500 border-orange-500"
-                  : "border-gray-300"
-              }`}
-            >
-              <Text
-                className={`text-sm ${
-                  selectedFilters.includes(filter)
-                    ? "text-white"
-                    : "text-gray-700"
-                }`}
-              >
-                {filter}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-        <View className="flex-row flex-1 items-center justify-end gap-2 mb-24">
-          <TextInput
-            className="flex-1 px-4 py-3 rounded-full border border-gray-300 bg-white"
-            placeholder="Ask Genie..."
-            value={input}
-            onChangeText={setInput}
-          />
-          <TouchableOpacity
-            onPress={handleSend}
-            className="px-4 py-3 bg-orange-500 rounded-full"
-          >
-            <Text className="text-white font-semibold">Send</Text>
-          </TouchableOpacity>
-        </View>
+      <View className="flex-row flex items-center justify-end gap-2 mb-24">
+        <TextInput
+          className="flex-1 px-4 py-3 rounded-full border border-gray-300 bg-white"
+          placeholder="Ask Genie..."
+          value={input}
+          onChangeText={setInput}
+        />
+        <TouchableOpacity
+          onPress={handleSend}
+          disabled={loading} // Disable send button while loading
+          className={`px-4 py-3 rounded-full ${
+            loading ? "bg-orange-300" : "bg-orange-500"
+          }`}
+        >
+          <Text className="text-white font-semibold">Send</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
