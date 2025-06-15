@@ -1,4 +1,3 @@
-// GenieTab.tsx
 import React, { useEffect, useState } from "react";
 import {
   View,
@@ -7,14 +6,26 @@ import {
   Text,
   ActivityIndicator,
   ScrollView,
+  SafeAreaView,
 } from "react-native";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch, useSelector } from "react-redux";
-import { setMessages as updateMessages } from "@/store/features/genieSlice"; // assuming genieSlice is configured
+import { setMessages as updateMessages } from "@/store/features/genieSlice";
 
 const genAI = new GoogleGenerativeAI("YOUR_GEMINI_API_KEY");
 const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+
+const allFilters = [
+  "High Protein",
+  "Low Carb",
+  "Spicy",
+  "Mild",
+  "South Indian",
+  "North Indian",
+  "Veg",
+  "Non-Veg",
+];
 
 export default function GenieTab() {
   const dispatch = useDispatch();
@@ -23,9 +34,12 @@ export default function GenieTab() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState(savedMessages || []);
   const [loading, setLoading] = useState(false);
+  const [filters, setFilters] = useState<string[]>([]);
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 
   useEffect(() => {
     loadMessages();
+    rotateFilters();
   }, []);
 
   useEffect(() => {
@@ -53,11 +67,25 @@ export default function GenieTab() {
     }
   };
 
+  const rotateFilters = () => {
+    const shuffled = [...allFilters].sort(() => 0.5 - Math.random());
+    setFilters(shuffled.slice(0, 4));
+    setSelectedFilters([]); // clear previous selections on new session
+  };
+
+  const toggleFilter = (filter: string) => {
+    setSelectedFilters((prev) =>
+      prev.includes(filter)
+        ? prev.filter((f) => f !== filter)
+        : [...prev, filter]
+    );
+  };
+
   const handleSend = async () => {
     if (!input.trim()) return;
 
     const userMessage = { role: "user", text: input };
-    setMessages((prev) => [...prev, userMessage]);
+    setMessages((prev: any) => [...prev, userMessage]);
     setInput("");
     setLoading(true);
 
@@ -65,7 +93,7 @@ export default function GenieTab() {
       input,
       detectMood(input),
       getTimeOfDay(),
-      "none"
+      selectedFilters.join(", ")
     );
 
     try {
@@ -73,7 +101,7 @@ export default function GenieTab() {
       const response = await result.response;
 
       const aiMessage = { role: "genie", text: response.text() };
-      setMessages((prev) => [...prev, aiMessage]);
+      setMessages((prev: any) => [...prev, aiMessage]);
     } catch (err) {
       console.error("Gemini API Error:", err);
     } finally {
@@ -82,9 +110,34 @@ export default function GenieTab() {
   };
 
   return (
-    <View className="flex-1 bg-white px-4 pt-6">
-      <ScrollView className="flex-1 mb-4">
-        {messages.map((msg, index) => (
+    <SafeAreaView className="flex-1 bg-white px-4 pt-6">
+      {/* Filter Chips */}
+      <View className="flex-row flex-wrap gap-2 mb-4">
+        {filters.map((filter) => (
+          <TouchableOpacity
+            key={filter}
+            onPress={() => toggleFilter(filter)}
+            className={`px-3 py-1 rounded-full border ${
+              selectedFilters.includes(filter)
+                ? "bg-orange-500 border-orange-500"
+                : "border-gray-300"
+            }`}
+          >
+            <Text
+              className={`text-sm ${
+                selectedFilters.includes(filter)
+                  ? "text-white"
+                  : "text-gray-700"
+              }`}
+            >
+              {filter}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+
+      <ScrollView className="flex-1 mb-24">
+        {messages.map((msg: any, index: any) => (
           <View
             key={index}
             className={`mb-2 p-3 rounded-xl max-w-[80%] ${
@@ -102,7 +155,7 @@ export default function GenieTab() {
         <ActivityIndicator size="large" color="#EF4F27" className="mb-3" />
       )}
 
-      <View className="flex-row items-center gap-2 mb-4">
+      <View className="flex-row flex-1 items-center justify-end gap-2 mb-24">
         <TextInput
           className="flex-1 px-4 py-3 rounded-full border border-gray-300 bg-white"
           placeholder="Ask Genie..."
@@ -116,7 +169,7 @@ export default function GenieTab() {
           <Text className="text-white font-semibold">Send</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -130,7 +183,7 @@ function formatPrompt(
 You are Genie, an AI food recommender in an Indian food delivery app.
 User Mood: ${mood}
 Time of Day: ${timeOfDay}
-Diet Preference: ${dietType}
+Diet Filters: ${dietType}
 User said: "${userInput}"
 
 Respond with a personalized food suggestion with explanation.

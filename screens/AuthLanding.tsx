@@ -43,7 +43,7 @@ const AuthLandingScreen = () => {
           className="rounded-sm my-2 py-4 w-full"
         />
         <Text className="w-full text-sm  font-medium text-gray-400">
-          By clicking, I accept the{" "}
+          By clicking, I accept the
           <Text className="text-black font-semibold">
             Terms & Conditions & Privacy
           </Text>

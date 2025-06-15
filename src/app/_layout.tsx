@@ -10,13 +10,13 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
 
-import "../global.css";
+import "../../global.css";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { LogBox } from "react-native";
 import { ClerkProviderWrapper } from "@/src/components/elements/ClerkProviderWrapper";
 import { Provider } from "react-redux";
-import { store } from "../store";
+import { store } from "../../store";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -27,7 +27,7 @@ LogBox.ignoreLogs([
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    SpaceMono: require("@/assets/fonts/SpaceMono-Regular.ttf"),
   });
 
   useEffect(() => {
