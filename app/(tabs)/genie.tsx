@@ -1,26 +1,42 @@
-import React, { useState, useCallback } from "react";
-import { View, ActivityIndicator } from "react-native";
-import { GiftedChat, IMessage } from "react-native-gifted-chat";
+// GenieTab.tsx
+import React, { useState } from "react";
+import {
+  View,
+  ActivityIndicator,
+  TextInput,
+  TouchableOpacity,
+  Text,
+} from "react-native";
+import { Bubble, ChatMessage, ChatView } from "react-native-chat-ui";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import uuid from "react-native-uuid";
 
+// Replace with your actual Gemini API Key
 const genAI = new GoogleGenerativeAI("YOUR_GEMINI_API_KEY");
 const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 export default function GenieTab() {
-  const [messages, setMessages] = useState<IMessage[]>([]);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const onSend = useCallback(async (newMessages: IMessage[] = []) => {
-    setMessages((previousMessages) =>
-      GiftedChat.append(previousMessages, newMessages)
-    );
+  const handleSend = async () => {
+    if (!input.trim()) return;
 
-    const userInput = newMessages[0]?.text || "";
+    const userMessage: ChatMessage = {
+      id: uuid.v4().toString(),
+      type: "text",
+      role: "user",
+      content: input,
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+    setInput("");
     setLoading(true);
 
     const prompt = formatPrompt(
-      userInput,
-      detectMood(userInput),
+      input,
+      detectMood(input),
       getTimeOfDay(),
       "none"
     );
@@ -29,39 +45,50 @@ export default function GenieTab() {
       const result = await model.generateContent(prompt);
       const response = await result.response;
 
-      const aiReply: IMessage = {
-        _id: Date.now() + 1,
-        text: response.text(),
-        createdAt: new Date(),
-        user: {
-          _id: 2,
-          name: "Genie AI",
-        },
+      const aiMessage: ChatMessage = {
+        id: uuid.v4().toString(),
+        type: "text",
+        role: "assistant",
+        content: response.text(),
       };
 
-      setMessages((previousMessages) =>
-        GiftedChat.append(previousMessages, [aiReply])
-      );
+      setMessages((prev) => [...prev, aiMessage]);
     } catch (err) {
       console.error("Gemini API Error:", err);
     } finally {
       setLoading(false);
     }
-  }, []);
+  };
 
   return (
-    <View className="flex-1">
-      <GiftedChat
+    <View className="flex-1 bg-white">
+      <ChatView
         messages={messages}
-        onSend={(messages) => onSend(messages)}
-        user={{ _id: 1 }}
-        placeholder="Ask me about food..."
+        renderBubble={(props) => <Bubble {...props} />}
       />
+
       {loading && (
-        <View className="absolute top-1/2 left-1/2 -translate-x-5 -translate-y-5">
-          <ActivityIndicator size="large" color="#EF4F27" />
-        </View>
+        <ActivityIndicator
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          size="large"
+          color="#EF4F27"
+        />
       )}
+
+      <View className="flex-row items-center border-t border-gray-200 p-2 bg-white">
+        <TextInput
+          className="flex-1 px-4 py-2 rounded-full border border-gray-300"
+          placeholder="Ask Genie..."
+          value={input}
+          onChangeText={setInput}
+        />
+        <TouchableOpacity
+          onPress={handleSend}
+          className="ml-2 px-4 py-2 bg-orange-500 rounded-full"
+        >
+          <Text className="text-white font-semibold">Send</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
