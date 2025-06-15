@@ -39,12 +39,25 @@ const LocationAndAccount = () => {
 
       let location = await Location.getCurrentPositionAsync({});
       let address = await Location.reverseGeocodeAsync(location.coords);
-      const place = address[0];
-      const display = `${place?.suburb || place?.district || place?.name}, ${
-        place?.city || place?.region
-      }`;
-      setCurrentLocation(display);
+
+      if (!address || address.length === 0) {
+        setCurrentLocation("Unknown Location");
+      } else {
+        const place = address[0];
+        const country = place?.country?.toLowerCase();
+
+        if (country && country.includes("india")) {
+          const display = `${
+            place?.suburb || place?.district || place?.name
+          }, ${place?.city || place?.region || place?.state}`;
+          setCurrentLocation(display);
+        } else {
+          // fallback to a known India location for dev
+          setCurrentLocation("Jalandhar, Punjab");
+        }
+      }
     } catch (error) {
+      console.error("Location error:", error);
       setCurrentLocation("Unable to fetch location");
     } finally {
       setLoading(false);
