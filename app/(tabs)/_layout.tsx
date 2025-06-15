@@ -5,7 +5,6 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { HapticTab } from "@/components/HapticTab";
 
 import TabBarBackground from "@/components/ui/TabBarBackground";
-
 import { useColorScheme } from "@/hooks/useColorScheme";
 
 export default function TabLayout() {
@@ -18,13 +17,13 @@ export default function TabLayout() {
         headerShown: false,
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: "absolute",
-          },
-          default: {},
-        }),
+        tabBarStyle: {
+          position: "absolute",
+          backgroundColor: "transparent",
+          borderTopWidth: 0,
+          elevation: 0,
+          height: 70,
+        },
       }}
     >
       <Tabs.Screen
@@ -75,7 +74,7 @@ export default function TabLayout() {
             </TouchableOpacity>
           ),
           headerTitle: "REORDER",
-          headerTitleStyle: { fontWeight: 700, fontSize: 18 },
+          headerTitleStyle: { fontWeight: "700", fontSize: 18 },
           headerShown: true,
           headerShadowVisible: false,
           headerTitleAlign: "center",
