@@ -15,6 +15,8 @@ import "../global.css";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { LogBox } from "react-native";
 import { ClerkProviderWrapper } from "@/src/components/elements/ClerkProviderWrapper";
+import { Provider } from "react-redux";
+import { store } from "../store";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -38,16 +40,20 @@ export default function RootLayout() {
     prepare();
   }, []);
   return (
-    <ClerkProviderWrapper>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack initialRouteName="(auth)">
-          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="(screens)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-        <StatusBar style="auto" />
-      </ThemeProvider>
-    </ClerkProviderWrapper>
+    <Provider store={store}>
+      <ClerkProviderWrapper>
+        <ThemeProvider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+        >
+          <Stack initialRouteName="(auth)">
+            <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="(screens)" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+          <StatusBar style="auto" />
+        </ThemeProvider>
+      </ClerkProviderWrapper>
+    </Provider>
   );
 }

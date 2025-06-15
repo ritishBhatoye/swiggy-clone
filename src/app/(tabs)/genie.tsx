@@ -11,7 +11,7 @@ import {
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch, useSelector } from "react-redux";
-import { setMessages as updateMessages } from "@/store/genieSlice"; // assuming genieSlice is configured
+import { setMessages as updateMessages } from "@/store/features/genieSlice"; // assuming genieSlice is configured
 
 const genAI = new GoogleGenerativeAI("YOUR_GEMINI_API_KEY");
 const model = genAI.getGenerativeModel({ model: "gemini-pro" });
