@@ -7,11 +7,17 @@ import {
   ActivityIndicator,
   ScrollView,
   SafeAreaView,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch, useSelector } from "react-redux";
 import { setMessages as updateMessages } from "@/store/features/genieSlice";
+
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
+import { TypingAnimation } from "react-native-typing-animation";
+import { LinearGradient } from "expo-linear-gradient";
 
 const genAI = new GoogleGenerativeAI("AIzaSyDh1rUYZ8pdOzKDtkzD70MfVO8uSYmEJbM");
 const model = genAI.getGenerativeModel({ model: "models/gemini-1.5-flash" });
@@ -74,7 +80,7 @@ export default function GenieTab() {
   };
 
   const toggleFilter = (filter: string) => {
-    if (loading) return; // Prevent toggling while API call is in progress
+    if (loading) return;
 
     setSelectedFilters((prev) => {
       const newFilters = prev.includes(filter)
@@ -88,24 +94,25 @@ export default function GenieTab() {
       setInput(filterMessage);
 
       if (filterMessage) {
-        handleSend();
+        handleSend(filterMessage);
       }
 
       return newFilters;
     });
   };
 
-  const handleSend = async () => {
-    if (!input.trim()) return;
+  const handleSend = async (customInput?: string) => {
+    const finalInput = customInput || input;
+    if (!finalInput.trim()) return;
 
-    const userMessage = { role: "user", text: input };
+    const userMessage = { role: "user", text: finalInput };
     setMessages((prev: any) => [...prev, userMessage]);
     setInput("");
     setLoading(true);
 
     const prompt = formatPrompt(
-      input,
-      detectMood(input),
+      finalInput,
+      detectMood(finalInput),
       getTimeOfDay(),
       selectedFilters.join(", ")
     );
@@ -124,72 +131,98 @@ export default function GenieTab() {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-white px-4 pt-6">
-      {/* Filter Chips */}
-
-      <ScrollView className="flex-1">
-        {messages.map((msg: any, index: any) => (
-          <View
-            key={index}
-            className={`mb-2 p-3 rounded-xl max-w-[80%] ${
-              msg.role === "user"
-                ? "self-end bg-orange-100"
-                : "self-start bg-gray-100"
-            }`}
-          >
-            <Text className="text-gray-800 text-base">{msg.text}</Text>
-          </View>
-        ))}
-      </ScrollView>
-
-      {loading && (
-        <ActivityIndicator size="large" color="#EF4F27" className="mb-3" />
-      )}
-      <View className="flex flex-col pt-4">
-        <View className="flex-row flex w-full gap-2 px-3 mb-4">
-          {filters.map((filter) => (
-            <TouchableOpacity
-              key={filter}
-              onPress={() => toggleFilter(filter)}
-              disabled={loading} // Disable button while loading
-              className={`px-3 py-1 rounded-full border ${
-                selectedFilters.includes(filter)
-                  ? "bg-orange-500 border-orange-500"
-                  : "border-gray-300"
-              } ${loading ? "opacity-50" : ""}`}
-            >
-              <Text
-                className={`text-sm ${
-                  selectedFilters.includes(filter)
-                    ? "text-white"
-                    : "text-gray-700"
+    <LinearGradient
+      colors={["#fff5eb", "#ffe0cc"]}
+      className="flex-1"
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+    >
+      <SafeAreaView className="flex-1 px-4 pt-6">
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : undefined}
+          className="flex-1"
+        >
+          <ScrollView className="flex-1">
+            {messages.map((msg: any, index: number) => (
+              <Animated.View
+                key={index}
+                entering={FadeIn}
+                exiting={FadeOut}
+                className={`mb-2 p-3 rounded-xl max-w-[80%] ${
+                  msg.role === "user"
+                    ? "self-end bg-orange-100"
+                    : "self-start bg-gray-100"
                 }`}
               >
-                {filter}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </View>
+                <Text className="text-gray-800 text-base">{msg.text}</Text>
+              </Animated.View>
+            ))}
 
-        <View className="flex-row flex items-center justify-end gap-2 mb-24">
-          <TextInput
-            className="flex-1 px-4 py-3 rounded-full border border-gray-300 bg-white"
-            placeholder="Ask Genie..."
-            value={input}
-            onChangeText={setInput}
-          />
-          <TouchableOpacity
-            onPress={handleSend}
-            disabled={loading} // Disable send button while loading
-            className={`px-4 py-3 rounded-full ${
-              loading ? "bg-orange-300" : "bg-orange-500"
-            }`}
-          >
-            <Text className="text-white font-semibold">Send</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </SafeAreaView>
+            {loading && (
+              <View className="flex flex-row gap-2 items-center ml-2">
+                <TypingAnimation
+                  dotColor="#EF4F27"
+                  dotAmplitude={4}
+                  dotSpeed={0.15}
+                  dotRadius={4}
+                  dotMargin={5}
+                />
+              </View>
+            )}
+          </ScrollView>
+
+          <View className="flex flex-col pt-4">
+            <View className="flex-row flex-wrap gap-2 px-2 mb-4">
+              {filters.map((filter) => (
+                <Animated.View
+                  key={filter}
+                  entering={FadeIn.duration(300)}
+                  exiting={FadeOut.duration(300)}
+                >
+                  <TouchableOpacity
+                    onPress={() => toggleFilter(filter)}
+                    disabled={loading}
+                    className={`px-3 py-1 rounded-full border ${
+                      selectedFilters.includes(filter)
+                        ? "bg-orange-500 border-orange-500"
+                        : "border-gray-300"
+                    } ${loading ? "opacity-50" : ""}`}
+                  >
+                    <Text
+                      className={`text-sm ${
+                        selectedFilters.includes(filter)
+                          ? "text-white"
+                          : "text-gray-700"
+                      }`}
+                    >
+                      {filter}
+                    </Text>
+                  </TouchableOpacity>
+                </Animated.View>
+              ))}
+            </View>
+
+            <View className="flex-row items-center justify-end gap-2 mb-20">
+              <TextInput
+                className="flex-1 px-4 py-3 rounded-full border border-gray-300 bg-white"
+                placeholder="Ask Genie..."
+                value={input}
+                onChangeText={setInput}
+              />
+              <TouchableOpacity
+                onPress={() => handleSend()}
+                disabled={loading}
+                className={`px-4 py-3 rounded-full ${
+                  loading ? "bg-orange-300" : "bg-orange-500"
+                }`}
+              >
+                <Text className="text-white font-semibold">Send</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </KeyboardAvoidingView>
+      </SafeAreaView>
+    </LinearGradient>
   );
 }
 
