@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   View,
   TextInput,
   TouchableOpacity,
   Text,
-  ActivityIndicator,
   ScrollView,
   SafeAreaView,
   KeyboardAvoidingView,
@@ -40,8 +39,11 @@ export default function GenieTab() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState(savedMessages || []);
   const [loading, setLoading] = useState(false);
+  const [showTyping, setShowTyping] = useState(false);
   const [filters, setFilters] = useState<string[]>([]);
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+
+  const scrollViewRef = useRef<ScrollView>(null);
 
   useEffect(() => {
     loadMessages();
@@ -51,7 +53,14 @@ export default function GenieTab() {
   useEffect(() => {
     saveMessages(messages);
     dispatch(updateMessages(messages));
+    scrollToBottom();
   }, [messages]);
+
+  const scrollToBottom = () => {
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollToEnd({ animated: true });
+    }
+  };
 
   const loadMessages = async () => {
     try {
@@ -109,6 +118,7 @@ export default function GenieTab() {
     setMessages((prev: any) => [...prev, userMessage]);
     setInput("");
     setLoading(true);
+    setShowTyping(true);
 
     const prompt = formatPrompt(
       finalInput,
@@ -120,20 +130,31 @@ export default function GenieTab() {
     try {
       const result = await model.generateContent(prompt);
       const response = await result.response;
+      const fullResponse = response.text();
 
-      const aiMessage = { role: "genie", text: response.text() };
-      setMessages((prev: any) => [...prev, aiMessage]);
+      const newMessage = { role: "genie", text: "" };
+      setMessages((prev: any) => [...prev, newMessage]);
+
+      for (let i = 0; i <= fullResponse.length; i++) {
+        const partial = fullResponse.slice(0, i);
+        await new Promise((res) => setTimeout(res, 15)); // typing speed
+        setMessages((prev: any) => {
+          const updated = [...prev];
+          updated[updated.length - 1] = { ...newMessage, text: partial };
+          return updated;
+        });
+      }
     } catch (err) {
       console.error("Gemini API Error:", err);
     } finally {
       setLoading(false);
+      setShowTyping(false);
     }
   };
 
   return (
     <LinearGradient
       colors={["#EF4F27 ", "#FF9440", "#ffe0cc", "#ffffff"]}
-      // className="flex-1"
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
       style={{ height: "100%" }}
@@ -143,7 +164,11 @@ export default function GenieTab() {
           behavior={Platform.OS === "ios" ? "padding" : undefined}
           className="flex-1"
         >
-          <ScrollView className="flex-1 ">
+          <ScrollView
+            className="flex-1"
+            ref={scrollViewRef}
+            onContentSizeChange={scrollToBottom}
+          >
             {messages.map((msg: any, index: number) => (
               <Animated.View
                 key={index}
@@ -165,8 +190,8 @@ export default function GenieTab() {
               </Animated.View>
             ))}
 
-            {loading && (
-              <View className="flex flex-row gap-2 items-center ml-2">
+            {showTyping && (
+              <View className="flex flex-row gap-2 items-center ml-2 mb-2">
                 <TypingAnimation
                   dotColor="#EF4F27"
                   dotAmplitude={4}
