@@ -126,30 +126,6 @@ export default function GenieTab() {
   return (
     <SafeAreaView className="flex-1 bg-white px-4 pt-6">
       {/* Filter Chips */}
-      <View className="flex-row flex w-full gap-2 px-3 mb-4">
-        {filters.map((filter) => (
-          <TouchableOpacity
-            key={filter}
-            onPress={() => toggleFilter(filter)}
-            disabled={loading} // Disable button while loading
-            className={`px-3 py-1 rounded-full border ${
-              selectedFilters.includes(filter)
-                ? "bg-orange-500 border-orange-500"
-                : "border-gray-300"
-            } ${loading ? "opacity-50" : ""}`}
-          >
-            <Text
-              className={`text-sm ${
-                selectedFilters.includes(filter)
-                  ? "text-white"
-                  : "text-gray-700"
-              }`}
-            >
-              {filter}
-            </Text>
-          </TouchableOpacity>
-        ))}
-      </View>
 
       <ScrollView className="flex-1">
         {messages.map((msg: any, index: any) => (
@@ -169,23 +145,49 @@ export default function GenieTab() {
       {loading && (
         <ActivityIndicator size="large" color="#EF4F27" className="mb-3" />
       )}
+      <View className="flex flex-col pt-4">
+        <View className="flex-row flex w-full gap-2 px-3 mb-4">
+          {filters.map((filter) => (
+            <TouchableOpacity
+              key={filter}
+              onPress={() => toggleFilter(filter)}
+              disabled={loading} // Disable button while loading
+              className={`px-3 py-1 rounded-full border ${
+                selectedFilters.includes(filter)
+                  ? "bg-orange-500 border-orange-500"
+                  : "border-gray-300"
+              } ${loading ? "opacity-50" : ""}`}
+            >
+              <Text
+                className={`text-sm ${
+                  selectedFilters.includes(filter)
+                    ? "text-white"
+                    : "text-gray-700"
+                }`}
+              >
+                {filter}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
 
-      <View className="flex-row flex items-center justify-end gap-2 mb-24">
-        <TextInput
-          className="flex-1 px-4 py-3 rounded-full border border-gray-300 bg-white"
-          placeholder="Ask Genie..."
-          value={input}
-          onChangeText={setInput}
-        />
-        <TouchableOpacity
-          onPress={handleSend}
-          disabled={loading} // Disable send button while loading
-          className={`px-4 py-3 rounded-full ${
-            loading ? "bg-orange-300" : "bg-orange-500"
-          }`}
-        >
-          <Text className="text-white font-semibold">Send</Text>
-        </TouchableOpacity>
+        <View className="flex-row flex items-center justify-end gap-2 mb-24">
+          <TextInput
+            className="flex-1 px-4 py-3 rounded-full border border-gray-300 bg-white"
+            placeholder="Ask Genie..."
+            value={input}
+            onChangeText={setInput}
+          />
+          <TouchableOpacity
+            onPress={handleSend}
+            disabled={loading} // Disable send button while loading
+            className={`px-4 py-3 rounded-full ${
+              loading ? "bg-orange-300" : "bg-orange-500"
+            }`}
+          >
+            <Text className="text-white font-semibold">Send</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );
