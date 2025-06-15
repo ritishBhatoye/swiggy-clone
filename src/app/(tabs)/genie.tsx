@@ -132,29 +132,36 @@ export default function GenieTab() {
 
   return (
     <LinearGradient
-      colors={["#fff5eb", "#ffe0cc"]}
-      className="flex-1"
+      colors={["#EF4F27 ", "#FF9440", "#ffe0cc", "#ffffff"]}
+      // className="flex-1"
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
+      style={{ height: "100%" }}
     >
-      <SafeAreaView className="flex-1 px-4 pt-6">
+      <SafeAreaView className="w-11/12 mx-auto pt-6 flex-1">
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : undefined}
           className="flex-1"
         >
-          <ScrollView className="flex-1">
+          <ScrollView className="flex-1 ">
             {messages.map((msg: any, index: number) => (
               <Animated.View
                 key={index}
                 entering={FadeIn}
                 exiting={FadeOut}
-                className={`mb-2 p-3 rounded-xl max-w-[80%] ${
+                className={`my-4 p-3 rounded-xl max-w-[80%] ${
                   msg.role === "user"
-                    ? "self-end bg-orange-100"
-                    : "self-start bg-gray-100"
+                    ? "self-end bg-orange-200"
+                    : "self-start bg-primary-600"
                 }`}
               >
-                <Text className="text-gray-800 text-base">{msg.text}</Text>
+                <Text
+                  className={`${
+                    msg.role === "user" ? "text-gray-800" : "text-white"
+                  }  text-base`}
+                >
+                  {msg.text}
+                </Text>
               </Animated.View>
             ))}
 
