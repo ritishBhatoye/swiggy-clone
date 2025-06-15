@@ -62,7 +62,7 @@ export const Assistant = () => {
   };
 
   return (
-    <View className="flex-1 bg-white mt-10">
+    <View className="flex-1 bg-white ">
       <ScrollView className="flex-1 p-4">
         {messages.map((message, index) => (
           <View
