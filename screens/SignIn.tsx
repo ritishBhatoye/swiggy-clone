@@ -1,15 +1,15 @@
 import { useSignIn } from "@clerk/clerk-expo";
 import { View, Text, Alert } from "react-native";
 import React, { useState } from "react";
-import PhoneNumberInputWithLabel from "@/components/atoms/PhoneNumberWithInputLabel";
-import Button from "@/components/atoms/Button";
+import PhoneNumberInputWithLabel from "@/src/components/atoms/PhoneNumberWithInputLabel";
+import Button from "@/src/components/atoms/Button";
 import {
   CodeField,
   Cursor,
   useBlurOnFulfill,
   useClearByFocusCell,
 } from "react-native-confirmation-code-field";
-import InputWithLabel from "@/components/atoms/InputWithLabel";
+import InputWithLabel from "@/src/components/atoms/InputWithLabel";
 
 const CELL_COUNT = 6;
 

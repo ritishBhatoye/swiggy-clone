@@ -1,35 +1,62 @@
 // GenieTab.tsx
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
-  ActivityIndicator,
   TextInput,
   TouchableOpacity,
   Text,
+  ActivityIndicator,
+  ScrollView,
 } from "react-native";
-import { Bubble, ChatMessage, ChatView } from "react-native-chat-ui";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import uuid from "react-native-uuid";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useDispatch, useSelector } from "react-redux";
+import { setMessages as updateMessages } from "@/store/genieSlice"; // assuming genieSlice is configured
 
-// Replace with your actual Gemini API Key
 const genAI = new GoogleGenerativeAI("YOUR_GEMINI_API_KEY");
 const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 export default function GenieTab() {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const dispatch = useDispatch();
+  const savedMessages = useSelector((state: any) => state.genie.messages);
+
   const [input, setInput] = useState("");
+  const [messages, setMessages] = useState(savedMessages || []);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    loadMessages();
+  }, []);
+
+  useEffect(() => {
+    saveMessages(messages);
+    dispatch(updateMessages(messages));
+  }, [messages]);
+
+  const loadMessages = async () => {
+    try {
+      const stored = await AsyncStorage.getItem("genie_messages");
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        setMessages(parsed);
+      }
+    } catch (e) {
+      console.error("Failed to load messages:", e);
+    }
+  };
+
+  const saveMessages = async (msgs: any) => {
+    try {
+      await AsyncStorage.setItem("genie_messages", JSON.stringify(msgs));
+    } catch (e) {
+      console.error("Failed to save messages:", e);
+    }
+  };
 
   const handleSend = async () => {
     if (!input.trim()) return;
 
-    const userMessage: ChatMessage = {
-      id: uuid.v4().toString(),
-      type: "text",
-      role: "user",
-      content: input,
-    };
-
+    const userMessage = { role: "user", text: input };
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setLoading(true);
@@ -45,13 +72,7 @@ export default function GenieTab() {
       const result = await model.generateContent(prompt);
       const response = await result.response;
 
-      const aiMessage: ChatMessage = {
-        id: uuid.v4().toString(),
-        type: "text",
-        role: "assistant",
-        content: response.text(),
-      };
-
+      const aiMessage = { role: "genie", text: response.text() };
       setMessages((prev) => [...prev, aiMessage]);
     } catch (err) {
       console.error("Gemini API Error:", err);
@@ -61,30 +82,36 @@ export default function GenieTab() {
   };
 
   return (
-    <View className="flex-1 bg-white">
-      <ChatView
-        messages={messages}
-        renderBubble={(props) => <Bubble {...props} />}
-      />
+    <View className="flex-1 bg-white px-4 pt-6">
+      <ScrollView className="flex-1 mb-4">
+        {messages.map((msg, index) => (
+          <View
+            key={index}
+            className={`mb-2 p-3 rounded-xl max-w-[80%] ${
+              msg.role === "user"
+                ? "self-end bg-orange-100"
+                : "self-start bg-gray-100"
+            }`}
+          >
+            <Text className="text-gray-800 text-base">{msg.text}</Text>
+          </View>
+        ))}
+      </ScrollView>
 
       {loading && (
-        <ActivityIndicator
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-          size="large"
-          color="#EF4F27"
-        />
+        <ActivityIndicator size="large" color="#EF4F27" className="mb-3" />
       )}
 
-      <View className="flex-row items-center border-t border-gray-200 p-2 bg-white">
+      <View className="flex-row items-center gap-2 mb-4">
         <TextInput
-          className="flex-1 px-4 py-2 rounded-full border border-gray-300"
+          className="flex-1 px-4 py-3 rounded-full border border-gray-300 bg-white"
           placeholder="Ask Genie..."
           value={input}
           onChangeText={setInput}
         />
         <TouchableOpacity
           onPress={handleSend}
-          className="ml-2 px-4 py-2 bg-orange-500 rounded-full"
+          className="px-4 py-3 bg-orange-500 rounded-full"
         >
           <Text className="text-white font-semibold">Send</Text>
         </TouchableOpacity>

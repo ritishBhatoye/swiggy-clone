@@ -1,4 +1,4 @@
-import { CategoryCard } from "@/components/elements/Cards/CategoryCard";
+import { CategoryCard } from "@/src/components/elements/Cards/CategoryCard";
 import { CategoryDummyData } from "@/constants/dummyData/CategoryData";
 import React from "react";
 

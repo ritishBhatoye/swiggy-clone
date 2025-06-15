@@ -1,5 +1,5 @@
-import ReorderCard from "@/components/elements/Cards/ReorderCard";
-import SearchInputField from "@/components/food/TopMenuBar/SearchInputField";
+import ReorderCard from "@/src/components/elements/Cards/ReorderCard";
+import SearchInputField from "@/src/components/food/TopMenuBar/SearchInputField";
 import { reorderData } from "@/constants/dummyData/reorder";
 import React from "react";
 

@@ -1,5 +1,5 @@
-import MenuCard from "@/components/elements/Cards/MenuCard";
-import { TitleWithBar } from "@/components/elements/TitleWithBar";
+import MenuCard from "@/src/components/elements/Cards/MenuCard";
+import { TitleWithBar } from "@/src/components/elements/TitleWithBar";
 import { MenuData } from "@/constants/dummyData/MenuData";
 
 import React from "react";

@@ -3,8 +3,8 @@
 import React from "react";
 import { View, Dimensions, Text } from "react-native";
 
-import Button from "@/components/atoms/Button";
-import { ListTile } from "@/components/elements/ListTile";
+import Button from "@/src/components/atoms/Button";
+import { ListTile } from "@/src/components/elements/ListTile";
 import { Router, useRouter } from "expo-router";
 
 const AuthLandingScreen = () => {

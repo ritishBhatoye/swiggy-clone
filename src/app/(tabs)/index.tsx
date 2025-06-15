@@ -1,10 +1,10 @@
-import CarouselCard from "@/components/elements/Cards/CarouselCard";
+import CarouselCard from "@/src/components/elements/Cards/CarouselCard";
 
-import FoodCarousel from "@/components/food/Carousel";
-import CategorySection from "@/components/food/CategorySection";
+import FoodCarousel from "@/src/components/food/Carousel";
+import CategorySection from "@/src/components/food/CategorySection";
 
-import MenuSection from "@/components/food/MenuSection";
-import TopMenuBar from "@/components/food/TopMenuBar";
+import MenuSection from "@/src/components/food/MenuSection";
+import TopMenuBar from "@/src/components/food/TopMenuBar";
 import { CarouselData } from "@/constants/dummyData/CardCarouselData";
 
 import { ScrollView, View } from "react-native";

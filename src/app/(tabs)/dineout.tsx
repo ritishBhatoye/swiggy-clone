@@ -1,5 +1,5 @@
-import RestaurantCard from "@/components/elements/Cards/RestaurantCard";
-import TopMenuBar from "@/components/food/TopMenuBar";
+import RestaurantCard from "@/src/components/elements/Cards/RestaurantCard";
+import TopMenuBar from "@/src/components/food/TopMenuBar";
 import { restaurantData } from "@/constants/dummyData/RestaurantData";
 import React from "react";
 

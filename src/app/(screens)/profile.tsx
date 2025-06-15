@@ -1,5 +1,5 @@
-import ActionTile from "@/components/atoms/ActionTile";
-import ProfileCard from "@/components/settings/ProfileCard";
+import ActionTile from "@/src/components/atoms/ActionTile";
+import ProfileCard from "@/src/components/settings/ProfileCard";
 import { SettingTileData } from "@/constants/dummyData/settings";
 import { Ionicons } from "@expo/vector-icons";
 import React, { useEffect, useRef } from "react";

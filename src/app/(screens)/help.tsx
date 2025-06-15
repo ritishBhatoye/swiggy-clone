@@ -1,4 +1,4 @@
-import { Assistant } from "@/components/global/HelpAssistant";
+import { Assistant } from "@/src/components/global/HelpAssistant";
 import React from "react";
 import { SafeAreaView } from "react-native";
 

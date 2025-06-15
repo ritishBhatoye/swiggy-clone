@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
 import { Link, useRouter } from "expo-router";
-import Button from "@/components/atoms/Button";
-import InputWithLabel from "@/components/atoms/InputWithLabel";
-import PhoneNumberInputWithLabel from "@/components/atoms/PhoneNumberWithInputLabel";
+import Button from "@/src/components/atoms/Button";
+import InputWithLabel from "@/src/components/atoms/InputWithLabel";
+import PhoneNumberInputWithLabel from "@/src/components/atoms/PhoneNumberWithInputLabel";
 import Toast from "react-native-toast-message";
-import InputOtpCode from "@/components/atoms/InputOtpCode";
+import InputOtpCode from "@/src/components/atoms/InputOtpCode";
 
 const OTP_TIMER_DURATION = 60; // 60 seconds
 

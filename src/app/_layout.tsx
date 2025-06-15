@@ -14,7 +14,7 @@ import "../global.css";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { LogBox } from "react-native";
-import { ClerkProviderWrapper } from "@/components/elements/ClerkProviderWrapper";
+import { ClerkProviderWrapper } from "@/src/components/elements/ClerkProviderWrapper";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
