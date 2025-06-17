@@ -76,7 +76,12 @@ const LocationAndAccount = () => {
           onPress={() => setExpanded(true)}
           className="flex-row items-center gap-2"
         >
-          <Ionicons name="send" size={16} color={"#EF4F27"} />
+          <Ionicons
+            className="-rotate-45"
+            name="send"
+            size={16}
+            color={"#EF4F27"}
+          />
           <Text className="text-black text-lg font-bold" numberOfLines={1}>
             {loading ? "Detecting..." : currentLocation?.split(",")[0]}
           </Text>
